@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
+
+    <TextView
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textAllCaps="true"
+        android:id="@+id/tetx_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Information"/>
+
+
+    <TextView
+        android:textColor="#60000000"
+        android:textSize="18sp"
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This time is already scheduled. Please try a different time to schedule a visit."/>
+
+    <Button
+        android:gravity="right"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/dialog_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:textColor="@android:color/holo_blue_light"
+        style="@style/Widget.AppCompat.Button.Borderless" />
+
+</LinearLayout>

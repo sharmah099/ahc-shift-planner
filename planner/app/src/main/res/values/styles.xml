@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Standard style of the buttons -->
+    <style name="Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/blue_button_selector</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!-- Standard style of the buttons that are part of a button bar -->
+  <!--  <style name="ButtonBarButton" parent="@style/Button">
+        <item name="android:background">@drawable/button_noborder</item>
+    </style>-->
+
+    <!-- Standard style of the check boxes -->
+    <!--<style name="CheckBox" parent="@android:style/Widget.Holo.Light.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_button</item>
+    </style>-->
+    <!-- Standard style of the radio buttons -->
+    <style name="RadioButton" parent="@android:style/Widget.Holo.Light.CompoundButton.RadioButton">
+
+    </style>
+
+    <style name="Text" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="Text.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Small">
+        <item name="android:textSize">@dimen/textSmall</item>
+    </style>
+    <style name="Text.Small.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Small.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Medium" parent="Text">
+        <item name="android:textSize">@dimen/textMedium</item>
+    </style>
+    <style name="Text.Medium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Medium.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Large" parent="Text">
+        <item name="android:textSize">@dimen/textLarge</item>
+    </style>
+    <style name="Text.Large.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Large.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.XLarge" parent="Text">
+        <item name="android:textSize">@dimen/textXLarge</item>
+    </style>
+    <style name="Text.XLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.XLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.XXLarge" parent="Text">
+        <item name="android:textSize">@dimen/textXXLarge</item>
+    </style>
+    <style name="Text.XXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.XXLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.XXXLarge" parent="Text">
+        <item name="android:textSize">@dimen/textXXXLarge</item>
+    </style>
+    <style name="Text.XXXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.XXXLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.XXXXLarge" parent="Text">
+        <item name="android:textSize">@dimen/textXXXXLarge</item>
+    </style>
+    <style name="Text.XXXXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.XXXXLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <!-- These text sizes are very large and do not vary in size linearly -->
+    <style name="Text.Super_Large" parent="Text">
+        <item name="android:textSize">@dimen/textSuperLarge</item>
+    </style>
+    <style name="Text.Super_Large.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Super_Large.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Super_XLarge" parent="Text">
+        <item name="android:textSize">@dimen/textSuperXLarge</item>
+    </style>
+    <style name="Text.Super_XLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Super_XLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Super_XXLarge" parent="Text">
+        <item name="android:textSize">@dimen/textSuperXXLarge</item>
+    </style>
+    <style name="Text.Super_XXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Super_XXLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+    <style name="Text.Super_XXXLarge" parent="Text">
+        <item name="android:textSize">@dimen/textSuperXXXLarge</item>
+    </style>
+    <style name="Text.Super_XXXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Text.Super_XXXLarge.Italic">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="Text.Title" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:drawableBottom">@drawable/title_underline</item>
+        <item name="android:drawablePadding">@dimen/padding_extra_narrow</item>
+        <item name="android:paddingLeft">@dimen/padding_narrow</item>
+        <item name="android:paddingRight">@dimen/padding_narrow</item>
+        <item name="android:textColor">@color/text_title_dark</item>
+        <item name="android:textSize">@dimen/textNormal</item>
+    </style>
+    <style name="Text.Title.Caps">
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="Text.Title.Small">
+        <item name="android:textSize">@dimen/textSmall</item>
+    </style>
+    <style name="Text.Title.Small.Caps">
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="Text.DrawerItem">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">?android:attr/listPreferredItemHeightSmall</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+
+    <style name="Text.Contacts" parent="@style/Text.Title">
+        <item name="android:textColor">@color/text_title_dark</item>
+        <item name="android:paddingLeft">@dimen/padding_narrow</item>
+        <item name="android:paddingRight">@dimen/padding_narrow</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/padding_extra_narrow</item>
+    </style>
+    <style name="Text.Contacts.Value" parent="@style/Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:enabled">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="SpinnerWithoutArrow" parent="@style/Widget.AppCompat.Spinner">
+        <item name="android:background">@null</item>
+        <item name="android:popupBackground">@android:color/white</item>
+    </style>
+
+    <style name="ToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionMenuTextColor">@color/primary_blue</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="titleMargins">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <style name="ToolBarTitleStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+</resources>

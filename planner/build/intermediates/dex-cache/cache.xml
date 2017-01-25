@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\ahc-shift-planner\planner\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\internal_impl-23.2.1-fe4a67848962c32856f0a19bd5b6e040f4add848.jar" />
+    </item>
+    <item
+        jar="D:\ahc-shift-planner\planner\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\classes-c605fbbd7007efc0a91f5c9706574f5da9d32a7c.jar" />
+    </item>
+    <item
+        jar="D:\ahc-shift-planner\planner\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\classes-6dcb85280b8b0a22cc9c164ed528ebcd2deb2d1b.jar" />
+    </item>
+    <item
+        jar="D:\Software\Android\Android-updated\android-sdk-windows\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\support-annotations-23.2.1-c13b31a60a696c519ea070b7b34e327575245936.jar" />
+    </item>
+    <item
+        jar="D:\ahc-shift-planner\planner\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\classes-8392e12c7476c4cff6ce564238849de7116dc2a7.jar" />
+    </item>
+    <item
+        jar="D:\ahc-shift-planner\planner\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="D:\ahc-shift-planner\planner\app\build\intermediates\pre-dexed\debug\classes-37d9d759962c3d3492bdd98f2f63a8644e60bd9a.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="expandableListDividerHeight">5dp</dimen>
+    <dimen name="padding_extra_narrow">4dp</dimen>
+    <dimen name="padding_narrow">6dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="padding_wide">14dp</dimen>
+    <dimen name="padding_extra_wide">16dp</dimen>
+    <dimen name="padding_eextra_wide">18dp</dimen>
+    <dimen name="padding_xextra_wide">60dp</dimen>
+    <dimen name="card_bottom_border_size">1.5dp</dimen>
+    <dimen name="client_details_profile_pic_size">96dp</dimen>
+    <dimen name="client_details_profile_pic_holder_size">105dp</dimen>
+    <dimen name="client_details_profile_pic_footer_height">20dp</dimen>
+    <dimen name="client_details_icon_size">30dp</dimen>
+    <dimen name="client_info_icon_size">35dp</dimen>
+    <dimen name="expandable_header_bar_height">28dp</dimen>
+    <dimen name="listview_title_separator">32dp</dimen>
+    <dimen name="listview_incomplete_job_page_height">54dp</dimen>
+    <dimen name="signal_status_indicator">20dp</dimen>
+    <dimen name="padding_narrow_negative">-6dp</dimen>
+    <dimen name="padding_negative">-10dp</dimen>
+    <dimen name="syncing_indicator">30dp</dimen>
+    <dimen name="icon_spacing">2dp</dimen>
+    <dimen name="vertical_spacing">30dp</dimen>
+    <dimen name="warning_message_corner_radius">10dp</dimen>
+    <dimen name="heading_element_height">34dp</dimen>
+    <dimen name="padding_job_element_top_bottom">15dp</dimen>
+    <dimen name="padding_expandable_list_group_header">15dp</dimen>
+    <dimen name="progress_height_width">150dp</dimen>
+    <dimen name="progress_stock_width">10dp</dimen>
+    <dimen name="progress_percentage_size">40sp</dimen>
+    <dimen name="fragment_connection_status_layout_margin">1dp</dimen>
+    <dimen name="fragment_connection_status_separator_height">2dp</dimen>
+    <dimen name="fragment_connection_status_separator_margin">5dp</dimen>
+    <dimen name="margin_extra_wide">20dp</dimen>
+    <dimen name="status_button_border_width">2dp</dimen>
+    <dimen name="padding_zero">0dp</dimen>
+    <dimen name="navigation_drawer_width">280dp</dimen>
+    <dimen name="timeline_job_status_icon">30dp</dimen>
+    <dimen name="timeline_padding_extra_wide">26dp</dimen>
+    <dimen name="nfc_tag__button_action_margin">30dp</dimen>
+    <dimen name="nav_header_container_height">120dp</dimen>
+    <dimen name="iv_carer_size">64dp</dimen>
+    <dimen name="ll_nav_height">56dp</dimen>
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="calendar_screen_separation">7dp</dimen>
+    <dimen name="image_ripple_padding">5dp</dimen>
+
+    <!--Font size -->
+
+    <dimen name="textSmall">12sp</dimen>
+    <dimen name="textNormal">14sp</dimen>
+    <dimen name="textMedium">16sp</dimen>
+    <dimen name="textLarge">18sp</dimen>
+    <dimen name="textXLarge">20sp</dimen>
+    <dimen name="textXXLarge">22sp</dimen>
+    <dimen name="textXXXLarge">24sp</dimen>
+    <dimen name="textXXXXLarge">26sp</dimen>
+    <dimen name="textSuperLarge">30sp</dimen>
+    <dimen name="textSuperXLarge">38sp</dimen>
+    <dimen name="textSuperXXLarge">52sp</dimen>
+    <dimen name="textSuperXXXLarge">66sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>
