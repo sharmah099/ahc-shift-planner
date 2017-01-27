@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingRight="5dp"
     android:paddingTop="@dimen/padding_medium"
     android:paddingBottom="@dimen/padding_medium"
-    android:background="@android:color/white">
+    android:paddingLeft="@dimen/padding_extra_wide"
+    android:paddingRight="@dimen/padding"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight=".50"
+        android:layout_weight=".70"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -47,9 +47,9 @@
             android:layout_height="wrap_content"
             style="@style/Text.Medium"/>
     </LinearLayout>
+
     <ImageView
         android:id="@+id/add_time"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_add"/>

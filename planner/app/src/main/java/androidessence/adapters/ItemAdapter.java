@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -58,7 +56,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             holder.time.setTextColor(Color.BLACK);
 
         }
-        holder.imageAdd.setOnClickListener(new View.OnClickListener() {
+        holder.eta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listnerAct.onStartAct(time, name,  position, false);
@@ -93,7 +91,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
 
     public class ViewHolder extends RecyclerView.ViewHolder  {
-        public final TextView clientName, lastName, time, hr, dob, gender, action, imageAdd;
+        public final TextView clientName, lastName, time, hr, dob, gender, action, eta, priority;
+        public final ImageView ivStatus;
 
 
         public ViewHolder(View view){
@@ -105,23 +104,28 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             action = (TextView)view.findViewById(R.id.tv_job_action);
             dob = (TextView)view.findViewById(R.id.tv_dob);
             gender = (TextView) view.findViewById(R.id.tv_client_gender);
+            priority = (TextView)view.findViewById(R.id.tv_priority);
 
-
-            imageAdd  = (TextView) view.findViewById(R.id.add_time);
+            eta = (TextView) view.findViewById(R.id.add_time);
+            ivStatus = (ImageView) view.findViewById(R.id.iv_status);
 
 
         }
 
-        public void bindMovie(ShiftItems items){
+        public void bindMovie(ShiftItems items)
+        {
             String [] names = splitName(items.getName());
-            this.clientName.setText(names[0]);
+            this.clientName.setText(names[0]+",");
             if (names.length == 2)
                 this.lastName.setText(names[1]);
             this.time.setText(items.getTime());
             this.hr.setText(items.getHour() +"/"+ items.getMin());
             this.gender.setText(items.getGender());
             this.action.setText(items.getAction());
-            this.dob.setText(items.getDob()+"("+""+items.getAge()+")");
+            this.dob.setText(items.getDob()+" ("+""+items.getAge()+")");
+
+            setPriority(this.priority, items.getAction());
+            setStatusIcon(this.ivStatus, items.getStatus());
         }
 
     }
@@ -177,5 +181,34 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         String[] names = name.split(" ");
         return names;
+    }
+
+    private void setPriority(TextView tvPriority, String action ){
+
+        if (action.equals("Dress wounds")) {
+            tvPriority.setText("D");
+            tvPriority.setBackgroundColor(Color.YELLOW);
+        }
+        else if (action.equals("Administer medication")){
+            tvPriority.setText("U");
+            tvPriority.setBackgroundColor(Color.CYAN);
+        }
+        else if (action.equals("Initial Assessment")){
+            tvPriority.setText("S");
+            tvPriority.setBackgroundColor(Color.MAGENTA);
+        }
+    }
+
+    private void setStatusIcon(ImageView tvStatus, String status){
+
+        if (status.equals("submitted")) {
+            tvStatus.setImageResource(R.mipmap.ic_job_page_set_status_finished_mandatory);
+        }
+        else if (status.equals("new")){
+            tvStatus.setImageResource(R.mipmap.ic_status_new);
+        }
+        else if (status.equals("in progress")){
+            tvStatus.setImageResource(R.mipmap.ic_job_page_set_status_inprogress_mandatory);
+        }
     }
 }

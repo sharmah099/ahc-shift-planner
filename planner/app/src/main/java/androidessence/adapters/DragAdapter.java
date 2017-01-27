@@ -75,7 +75,7 @@ public class DragAdapter extends ItemTouchHelper.SimpleCallback {
             //name.setTextColor(Color.BLACK);
 
             ImageView imageView = (ImageView)viewHolder.itemView.findViewById(R.id.add_time);
-            imageView.setImageResource(R.mipmap.ic_action_add);
+            imageView.setImageResource(R.mipmap.ic_add);
             viewHolder.itemView.setBackgroundColor(Color.CYAN);
         }
     }

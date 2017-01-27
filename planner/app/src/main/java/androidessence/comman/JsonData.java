@@ -14,7 +14,7 @@ public class JsonData
             "      \"min\": \"30m\",\n" +
             "      \"date\": \"04-Jan-16\",\n" +
             "      \"name\": \"Smith Alex\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Feb-1979\",\n" +
             "      \"age\": \"37Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -26,7 +26,7 @@ public class JsonData
             "      \"min\": \"30m\",\n" +
             "      \"date\": \"04-Jan-16\",\n" +
             "      \"name\": \"Paul Mark\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -38,7 +38,7 @@ public class JsonData
             "      \"min\": \"30m\",\n" +
             "      \"date\": \"04-Jan-16\",\n" +
             "      \"name\": \"Anjalina\",\n" +
-            "      \"gender\": \"F\",\n" +
+            "      \"gender\": \"Female\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -50,7 +50,7 @@ public class JsonData
             "      \"min\": \"30m\",\n" +
             "      \"date\": \"04-Jan-16\",\n" +
             "      \"name\": \"Cook Andrew\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1978\",\n" +
             "      \"age\": \"38Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -62,7 +62,7 @@ public class JsonData
             "      \"min\": \"30m\",\n" +
             "      \"date\": \"04-Jan-16\",\n" +
             "      \"name\": \"Ramesh\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -75,7 +75,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"William Jons\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -86,7 +86,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Peter dave\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Feb-1979\",\n" +
             "      \"age\": \"37Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -96,8 +96,8 @@ public class JsonData
             "      \"time\": \"16:30\",\n" +
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
-            "      \"name\": \"Julia\",\n" +
-            "      \"gender\": \"F\",\n" +
+            "      \"name\": \"Julia Cook\",\n" +
+            "      \"gender\": \"Female\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -108,7 +108,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Himanshu Sharma\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1960\",\n" +
             "      \"age\": \"56Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -119,7 +119,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Priyank\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1960\",\n" +
             "      \"age\": \"56Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -130,7 +130,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Mandy\",\n" +
-            "      \"gender\": \"F\",\n" +
+            "      \"gender\": \"Female\",\n" +
             "      \"dob\": \"30-Feb-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Administer medication\",\n" +
@@ -141,7 +141,7 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Kohli Virat\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
@@ -152,18 +152,18 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Victory Ml\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Initial Assessment\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"submitted\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"10:35\",\n" +
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Mark Cheng\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Dress wounds\",\n" +
@@ -174,11 +174,11 @@ public class JsonData
             "      \"hr\": \"0h\",\n" +
             "      \"min\": \"30m\",\n" +
             "      \"name\": \"Willson Dron\",\n" +
-            "      \"gender\": \"M\",\n" +
+            "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Initial Assessment\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"in progress\"\n" +
             "    }\n" +
             "  ]\n" +
             "}";

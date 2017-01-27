@@ -11,6 +11,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     ItemAdapter itemAdapter;
     RecyclerView movieRecyclerView, incompleteRv;
     TextView tvExpand;
+    ImageView ivExpand;
     NamesAdepter namesAdapter;
     LinearLayout parent;
     int filterPanelWidth;
@@ -55,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
         tvExpand = (TextView)findViewById(R.id.tv_expend);
         tvExpand.setOnClickListener(this);
+
+        ivExpand = (ImageView) findViewById(R.id.iv_expand_col);
+        ivExpand.setOnClickListener(this);
+
         // Setup RecyclerView
         movieRecyclerView = (RecyclerView) findViewById(R.id.movie_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 String name = data.getStringExtra("REVERT_NAME");
 
                 if (isFromIncomp) {
-                    tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_expand_view_expand, 0);
+                    tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_expand, 0);
                     incompleteRv.setVisibility(View.GONE);
                     for(IncompleteItems in : inCompleteItems) {
                         if (in.getName().equals(name)) {
@@ -153,13 +159,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     {
         if (inCompleteItems != null && !inCompleteItems.isEmpty()) {
             if (incompleteRv.getVisibility() == View.GONE) {
-                tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_expand_view_expand, 0);
+                ivExpand.setImageResource(R.mipmap.ic_expand);
+                //tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_expand, 0);
                 incompleteRv.setVisibility(View.VISIBLE);
                 namesAdapter.refresh(inCompleteItems);
                 setHeightInExpand();
                 helper.attachToRecyclerView(null);
             } else {
-                tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_contact_up, 0);
+                ivExpand.setImageResource(R.mipmap.ic_collapse);
+                //tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_collapse, 0);
                 incompleteRv.setVisibility(View.GONE);
                 setHeightInCollapse();
                 helper.attachToRecyclerView(movieRecyclerView);
