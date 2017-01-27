@@ -66,14 +66,16 @@
         <TextView
             style="@style/Text.Medium"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.80"
             android:layout_height="wrap_content"
             android:text="Some text will come here"/>
 
         <TextView
+            android:paddingRight="@dimen/padding_extra_narrow"
             style="@style/Text.Medium"
             android:gravity="right"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
             android:layout_height="wrap_content"
             android:text="Edit"
             android:textColor="@color/primary_blue"/>
