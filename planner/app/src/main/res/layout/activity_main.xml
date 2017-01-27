@@ -24,8 +24,8 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padding"
-        android:paddingBottom="@dimen/padding"
+        android:paddingTop="@dimen/padding_narrow"
+        android:paddingBottom="@dimen/padding_narrow"
         android:paddingLeft="@dimen/padding_extra_wide"
         android:paddingRight="@dimen/padding"
         android:background="@color/cardview_light_background">
@@ -35,13 +35,12 @@
             android:id="@+id/tv_expend"
             android:text="Past Incomplete Visits"
             android:layout_width="0dp"
-            android:layout_weight="0.90"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/iv_expand_col"
-            android:layout_width="0dp"
-            android:layout_weight="0.10"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_collapse"/>
     </LinearLayout>
@@ -67,15 +66,14 @@
         <TextView
             style="@style/Text.Medium"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Some text will come here"/>
 
         <TextView
             style="@style/Text.Medium"
             android:gravity="right"
-            android:layout_width="0dp"
-            android:layout_weight="0.2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
             android:textColor="@color/primary_blue"/>

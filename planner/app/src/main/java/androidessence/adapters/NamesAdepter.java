@@ -64,7 +64,7 @@ public class NamesAdepter extends RecyclerView.Adapter<NamesAdepter.ViewHolder> 
         final String time = item.getTime();
         final String date = item.getDate();
         String[] names = splitName(item.getName());
-        myViewHolder.firstName.setText(names[0]);
+        myViewHolder.firstName.setText(names[0]+",");
         if (names.length == 2)
         myViewHolder.lastName.setText(names[1]);
         myViewHolder.time.setText(item.getTime());
