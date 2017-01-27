@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         //set the toolbar as actionbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.mipmap.ic_menu_white_24dp);
 
         tvExpand = (TextView)findViewById(R.id.tv_expend);
         tvExpand.setOnClickListener(this);

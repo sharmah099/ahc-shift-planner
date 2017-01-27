@@ -12,13 +12,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_blue"
         android:elevation="@dimen/padding_extra_narrow"
-        app:contentInsetEnd="0dp"
+        android:background="@color/primary_blue"
         app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
         app:contentInsetStart="0dp"
-        app:theme="@style/ToolBarStyle" />
+        app:contentInsetRight="0dp"
+        app:contentInsetEnd="0dp"
+        android:paddingLeft="@dimen/padding_extra_wide"
+        app:theme="@style/ToolBarStyle"
+        app:logo="@mipmap/ic_menu_white_24dp"
+        app:titleMarginStart="@dimen/padding_extra_wide"
+        app:title="Shift"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
