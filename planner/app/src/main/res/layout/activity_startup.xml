@@ -73,8 +73,7 @@
                 android:layout_marginLeft="@dimen/ll_nav_height"
                 android:stateListAnimator="@animator/raised_button"
                 android:text="@string/start_shift"
-                android:textColor="@color/white"
-                android:textSize="@dimen/textNormal" />
+                style="@style/Button"/>
 
             <TextView
                 android:id="@+id/tv_visit_time"
