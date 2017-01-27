@@ -26,32 +26,42 @@
             android:id="@+id/tv_incomp_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Text.Medium"/>
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight=".70"
+        android:layout_weight=".50"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_first_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Text.Large.Bold"
             android:textAllCaps="true"/>
+
         <TextView
             android:id="@+id/tv_last_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Text.Medium"/>
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.20"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
     <ImageView
-        android:id="@+id/add_time"
+        android:layout_gravity="right"
         android:layout_width="wrap_content"
+        android:id="@+id/add_time"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_add"/>
-
+    </LinearLayout>
 </LinearLayout>

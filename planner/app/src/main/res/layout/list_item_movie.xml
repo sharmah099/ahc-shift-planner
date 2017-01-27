@@ -33,7 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0hr/30mi"
-                style="@style/Text" />
+                style="@style/Text"
+                android:textColor="@color/text_secondary"/>
 
             <ImageView
                 android:paddingTop="@dimen/padding_extra_narrow"
@@ -44,10 +45,9 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.70"
+            android:layout_weight="0.50"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_extra_narrow">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_client_name"
@@ -58,7 +58,8 @@
                 android:id="@+id/tv_client_name_last"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Text.Medium"/>
+                style="@style/Text.Medium"
+                android:textColor="@color/text_secondary"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,24 +71,28 @@
                     android:id="@+id/tv_client_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"/>
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"/>
 
                 <TextView
                     android:paddingLeft="@dimen/padding_extra_narrow"
                     android:id="@+id/tv_dob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"/>
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_narrow"
+                android:paddingTop="@dimen/padding_narrow">
 
                 <TextView
-                    android:paddingTop="@dimen/padding_extra_narrow"
-                    android:paddingBottom="@dimen/padding_extra_narrow"
+                    android:paddingBottom="@dimen/padding_narrow"
+                    android:paddingTop="@dimen/padding_narrow"
                     android:paddingRight="@dimen/padding_medium"
                     android:paddingLeft="@dimen/padding_medium"
                     android:id="@+id/tv_priority"
@@ -104,15 +109,18 @@
                     android:id="@+id/tv_job_action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"/>
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"/>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
+            android:paddingRight="@dimen/padding_extra_narrow"
             android:id="@+id/add_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
+            android:layout_height="match_parent"
+            android:gravity="center|end"
             android:text="Set ETA"
             android:textColor="@color/primary_blue"/>
     </LinearLayout>
