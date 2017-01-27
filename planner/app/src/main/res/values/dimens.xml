@@ -9,6 +9,7 @@
     <dimen name="padding_wide">14dp</dimen>
     <dimen name="padding_extra_wide">16dp</dimen>
     <dimen name="padding_eextra_wide">18dp</dimen>
+    <dimen name="padding_xxextra_wide">20dp</dimen>
     <dimen name="padding_xextra_wide">60dp</dimen>
     <dimen name="card_bottom_border_size">1.5dp</dimen>
     <dimen name="client_details_profile_pic_size">96dp</dimen>
