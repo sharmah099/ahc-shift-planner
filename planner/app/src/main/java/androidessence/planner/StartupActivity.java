@@ -34,6 +34,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
         //set the toolbar as actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setIcon(R.mipmap.ic_menu_white_24dp);
 
         startTime = (TextView) findViewById(R.id.tv_start_time);
         visitTime = (TextView) findViewById(R.id.tv_visit_time);
