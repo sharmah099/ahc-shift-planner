@@ -66,26 +66,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_extra_wide">
-        <TextView
-            style="@style/Text.Medium"
-            android:layout_width="0dp"
-            android:layout_weight="0.80"
-            android:layout_height="wrap_content"
-            android:text="Today 09:00 to 17:00"/>
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_medium"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:paddingTop="@dimen/padding_eextra_wide">
 
         <TextView
-            android:paddingRight="@dimen/padding_extra_narrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"/>
+
+        <TextView
+            android:id="@+id/tv_start"
             style="@style/Text.Medium"
-            android:gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding"
+            android:text="09:00 "/>
+        <TextView
+            style="@style/Text.Medium"
             android:layout_width="0dp"
-            android:layout_weight="0.20"
+            android:layout_weight=".50"
+            android:layout_height="wrap_content"
+            android:text="17:00"
+            android:id="@+id/tv_finish" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            style="@style/Text.Medium"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:textColor="@color/primary_blue"/>
-
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:textColor="@color/primary_blue" />
 
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"

@@ -1,13 +1,16 @@
 package androidessence.planner;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +18,28 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import androidessence.adapters.DragAdapter;
 import androidessence.adapters.ItemAdapter;
 import androidessence.adapters.NamesAdepter;
 import androidessence.comman.DataService;
 import androidessence.comman.DividerItemDecoration;
+import androidessence.comman.EditSessionLengthDialog;
+import androidessence.comman.PreferenceClass;
+import androidessence.comman.StartNewShiftDialog;
 import androidessence.listeners.StartActivityForResultListner;
 import androidessence.pojo.IncompleteItems;
 import androidessence.pojo.ShiftItems;
 
-public class MainActivity extends AppCompatActivity implements StartActivityForResultListner, View.OnClickListener
+public class MainActivity extends AppCompatActivity implements StartActivityForResultListner, View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,StartNewShiftDialog.StartNewShiftDialogCloseListener
 {
 
     ItemTouchHelper helper;
@@ -38,9 +50,16 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     NamesAdepter namesAdapter;
     LinearLayout parent;
     int filterPanelWidth;
+    TextView tvEdit;
+    TextView tvFinish;
+    TextView tvStart;
+
 
     List<ShiftItems> movieList = null;
     List<IncompleteItems> inCompleteItems = null;
+
+    public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
 
     int pos = 0;
 
@@ -59,6 +78,27 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
         ivExpand = (ImageView) findViewById(R.id.iv_expand_col);
         ivExpand.setOnClickListener(this);
+
+        tvEdit = (TextView) findViewById(R.id.tv_edit);
+        tvFinish = (TextView) findViewById(R.id.tv_finish);
+        tvStart =(TextView) findViewById(R.id.tv_start);
+        String time = TIME_FORMAT.format(new Date());
+        tvStart.setText(time + " "+ "to" + " ");
+        displayFinishTime();
+        PreferenceClass preferences = new PreferenceClass(this);
+        String finishTime = preferences.getFinishTime();
+        if(!TextUtils.isEmpty(finishTime)) {
+            tvFinish.setText(preferences.getFinishTime());
+        }
+        tvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                EditSessionLengthDialog dialogFragment = new EditSessionLengthDialog();
+                dialogFragment.show(fm, "EditSessionLength");
+            }
+        });
+
 
         // Setup RecyclerView
         movieRecyclerView = (RecyclerView) findViewById(R.id.movie_recycler_view);
@@ -197,5 +237,59 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         actual.height = actual.MATCH_PARENT;
         movieRecyclerView.setLayoutParams(actual);
     }
+
+
+    @Override
+    public void handleDialogClose(DialogInterface dialog)
+    {
+        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
+        tvFinish.setText(preferenceClass.getFinishTime());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
+        preferenceClass.clearEndTime();
+        preferenceClass.clearNewFinsihTime();
+    }
+
+    private void displayFinishTime()
+    {
+        int hr = 8;
+        String finishTime = addHrs(hr);
+        tvFinish.setText(finishTime);
+        PreferenceClass prefernces = new PreferenceClass(getApplicationContext());
+        prefernces.setFinishTime(finishTime);
+    }
+
+    private String addHrs(int hrs)
+    {
+        String time ="";
+        String today = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+        try {
+            String todayT = TIME_FORMAT.format(new Date());
+            Date start = sdf.parse(todayT);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(start);
+            cal.add(Calendar.HOUR, hrs);
+            Date end = cal.getTime();
+            time = TIME_FORMAT.format(end);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return time;
+    }
+
+    @Override
+    public void handleStartNewDialogClose(DialogInterface dialog)
+    {
+        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
+        tvFinish.setText(preferenceClass.getNewFinishTime());
+    }
+
+
+
 
 }
