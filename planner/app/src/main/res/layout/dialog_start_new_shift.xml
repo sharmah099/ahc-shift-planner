@@ -95,10 +95,11 @@
             android:stateListAnimator="@animator/raised_button"
             android:text="Finish" />
 
-        <TextView
-            android:id="@+id/tv_hours_new_shift"
+        <EditText
+            android:id="@+id/et_hours_new_shift"
             android:layout_width="40dp"
             android:gravity="center"
+            android:inputType="number"
             android:layout_height="wrap_content"
             style="@style/Text.XLarge" />
 
@@ -122,6 +123,17 @@
         android:text="hours"
         style="@style/Text.Medium"
         android:textColor="@color/text_secondary"/>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        style="@style/Text.Medium"
+        android:textColor="@color/red_warnings"
+        android:text="Hours limit between 0-48 hrs" />
 
     <Button
         android:id="@+id/btn_start_new_shift"

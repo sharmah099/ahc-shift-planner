@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/tv_edit_start"
+        style="@style/Text.XLarge.Bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit session length"
-        style="@style/Text.XLarge.Bold" />
+        android:text="Edit session length" />
 
     <View
         android:layout_width="match_parent"
@@ -26,19 +26,19 @@
 
         <TextView
             android:id="@+id/tv_start"
+            style="@style/Text.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:text="Start"
-            style="@style/Text.Medium"
             android:textColor="@color/text_secondary" />
 
         <TextView
             android:id="@+id/tv_start_time"
+            style="@style/Text.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            style="@style/Text.Medium"
             android:textColor="@color/text_secondary" />
 
     </LinearLayout>
@@ -53,19 +53,19 @@
 
         <TextView
             android:id="@+id/tv_finish"
+            style="@style/Text.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:text="Finish"
-            style="@style/Text.Medium"
-            android:textColor="@color/text_secondary"  />
+            android:textColor="@color/text_secondary" />
 
         <TextView
             android:id="@+id/tv_finish_time"
+            style="@style/Text.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            style="@style/Text.Medium"
             android:textColor="@color/text_secondary" />
     </LinearLayout>
 
@@ -81,40 +81,52 @@
             android:id="@+id/iv_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:src="@mipmap/ic_left"
             android:layout_marginBottom="3dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="left|center_vertical"
+            android:src="@mipmap/ic_left"
             android:stateListAnimator="@animator/raised_button"
             android:text="Finish" />
 
-        <TextView
-            android:id="@+id/tv_hours"
+        <EditText
+            android:id="@+id/et_hours"
+            style="@style/Text.XLarge"
             android:layout_width="40dp"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            style="@style/Text.XLarge"/>
+            android:gravity="center"
+            android:inputType="number" />
 
         <ImageView
             android:id="@+id/iv_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:src="@mipmap/ic_right"
             android:layout_marginBottom="3dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="left|center_vertical"
+            android:src="@mipmap/ic_right"
             android:stateListAnimator="@animator/raised_button"
             android:text="Finish" />
 
     </LinearLayout>
 
     <TextView
+        style="@style/Text.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="hours"
+        android:textColor="@color/text_secondary" />
+
+    <TextView
+        android:id="@+id/tv_error"
         style="@style/Text.Medium"
-        android:textColor="@color/text_secondary"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Hours limit between 0-48 hrs"
+        android:textColor="@color/red_warnings"
+        android:visibility="gone" />
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"
@@ -125,22 +137,22 @@
 
         <Button
             android:id="@+id/btn_update"
+            style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
-            android:text="Update"
-            style="@style/Button"
-            android:stateListAnimator="@animator/raised_button"/>
+            android:stateListAnimator="@animator/raised_button"
+            android:text="Update" />
 
         <Button
             android:id="@+id/btn_create_shift"
+            style="@style/Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:layout_marginTop="25dp"
-            android:text="Create new shift"
-            style="@style/Button"
-            android:stateListAnimator="@animator/raised_button"/>
+            android:stateListAnimator="@animator/raised_button"
+            android:text="Create new shift" />
 
     </LinearLayout>
 </LinearLayout>
