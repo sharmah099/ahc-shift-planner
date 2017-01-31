@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import androidessence.listeners.PlannerItemClickListener;
 import androidessence.planner.R;
 import androidessence.listeners.StartActivityForResultListner;
 import androidessence.pojo.ShiftItems;
@@ -26,15 +27,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     StartActivityForResultListner listnerAct;
 
-    public ItemAdapter(Context context, List<ShiftItems> items, StartActivityForResultListner listnerAct){
+    PlannerItemClickListener plannerItemClickListener;
+
+    public ItemAdapter(Context context, List<ShiftItems> items, StartActivityForResultListner listnerAct,
+                       PlannerItemClickListener plannerItemClickListener){
         this.mContext = context;
         this.items = items;
         this.listnerAct = listnerAct;
+        this.plannerItemClickListener = plannerItemClickListener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.list_item_movie, parent, false));
+        View itemView = (LayoutInflater.from(mContext).inflate(R.layout.list_item_movie, parent, false));
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                plannerItemClickListener.onItemClicked();
+            }
+        });
+        return new ViewHolder(itemView);
     }
 
     @Override

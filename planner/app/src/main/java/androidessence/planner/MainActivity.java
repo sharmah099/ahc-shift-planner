@@ -14,6 +14,9 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,11 +39,14 @@ import androidessence.comman.DividerItemDecoration;
 import androidessence.comman.EditSessionLengthDialog;
 import androidessence.comman.PreferenceClass;
 import androidessence.comman.StartNewShiftDialog;
+import androidessence.listeners.PlannerItemClickListener;
 import androidessence.listeners.StartActivityForResultListner;
 import androidessence.pojo.IncompleteItems;
 import androidessence.pojo.ShiftItems;
 
-public class MainActivity extends AppCompatActivity implements StartActivityForResultListner, View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,StartNewShiftDialog.StartNewShiftDialogCloseListener
+public class MainActivity extends AppCompatActivity implements StartActivityForResultListner,
+        View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,
+        StartNewShiftDialog.StartNewShiftDialogCloseListener, PlannerItemClickListener
 {
 
     ItemTouchHelper helper;
@@ -115,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         DataService service = DataService.getService();
         List<ShiftItems> sh = service.getShiftItems();
         // Setup Adapter
-        itemAdapter = new ItemAdapter(this, sh, this);
+        itemAdapter = new ItemAdapter(this, sh, this, this);
         movieRecyclerView.setAdapter(itemAdapter);
 
         // Setup ItemTouchHelper
@@ -295,6 +301,13 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     {
         PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
         tvFinish.setText(preferenceClass.getNewFinishTime());
+    }
+
+    @Override
+    public void onItemClicked(){
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
+        jobOverviewFragment.show(fm ,"");
     }
 
 }
