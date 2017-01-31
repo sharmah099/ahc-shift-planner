@@ -62,9 +62,6 @@ public class EditSessionLengthDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
-                if(closeListener!=null) {
-                    closeListener.handleDialogClose(null);
-                }
             }
         });
         btnRight.setOnClickListener(new View.OnClickListener() {
@@ -135,12 +132,14 @@ public class EditSessionLengthDialog extends DialogFragment {
         }
     }
 
-    private void displayFinishTime() {
+    private void displayFinishTime()
+    {
         int hr = Integer.valueOf(tvHrs.getText().toString());
         String finishTime = addHrs(hr);
+        String addHr = addFinishTime(hr);
         tvFinishTime.setText(finishTime);
         PreferenceClass preferences = new PreferenceClass(getActivity());
-        preferences.setFinishTime(finishTime);
+        preferences.setFinishTime(addHr);
     }
 
     /**
@@ -150,7 +149,8 @@ public class EditSessionLengthDialog extends DialogFragment {
         tvHrs.setText("" + number);
     }
 
-    private String addHrs(int hrs) {
+    private String addHrs(int hrs)
+    {
         String time = "";
         String today = "";
         String calDate = " ";
@@ -179,6 +179,24 @@ public class EditSessionLengthDialog extends DialogFragment {
         return time + " " + today;
     }
 
+    private String addFinishTime(int hrs)
+    {
+        String time = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MM dd HH:mm yy");
+        try {
+            String todayT = DATE_TIME_FORMAT.format(new Date());
+            Date start = sdf.parse(todayT);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(start);
+            cal.add(Calendar.HOUR, hrs);
+            Date end = cal.getTime();
+            time = TIME_FORMAT.format(end);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return time ;
+    }
+
 
     public void onDismiss(DialogInterface dialog)
     {
@@ -186,7 +204,7 @@ public class EditSessionLengthDialog extends DialogFragment {
         if(activity instanceof MyDialogCloseListener) {
             ((MyDialogCloseListener) activity).handleDialogClose(dialog);
         }
-        }
+    }
 
     public interface MyDialogCloseListener
     {

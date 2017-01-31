@@ -52,9 +52,6 @@ public class StartNewShiftDialog extends DialogFragment
             @Override
             public void onClick(View v) {
                 dismiss();
-                if(closeListener!=null) {
-                    closeListener.handleStartNewDialogClose(null);
-                }
             }
         });
 
@@ -139,7 +136,6 @@ public class StartNewShiftDialog extends DialogFragment
         PreferenceClass prefernces = new PreferenceClass(getActivity());
         prefernces.setNewFinishTime(hours+ ":"+ "00");
     }
-
 
     /**
      * This method displays.
