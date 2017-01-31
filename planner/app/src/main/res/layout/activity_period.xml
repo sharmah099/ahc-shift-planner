@@ -41,8 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Select Period"
                 style="@style/Text.XLarge.Bold"
-                android:padding="@dimen/padding_narrow"
-                android:paddingBottom="20dp"/>
+                android:padding="@dimen/padding_narrow"/>
 
             <Button
                 android:id="@+id/btn_1"
@@ -50,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="09:00 - 12:00"
                 android:layout_marginBottom="3dp"
-                android:layout_marginTop="@dimen/padding_narrow"
+                android:layout_marginTop="20dp"
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button

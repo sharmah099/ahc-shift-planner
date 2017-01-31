@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.9">
+
+                    <TextView
+                        android:id="@+id/tv_firstname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Baverstock,"
+                        android:textAllCaps="true"
+                        style="@style/Text.Large.Bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_lastname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Text.Large.Bold"
+                        android:text="Christian"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/img_spl_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingRight="@dimen/padding_narrow"
+                    android:src="@drawable/ic_alert_spl_info"
+                    android:layout_weight="0.1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/expandableListDividerHeight"
+                android:paddingBottom="@dimen/expandableListDividerHeight">
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"
+                    android:text="Female   "/>
+
+                <TextView
+                    android:id="@+id/tv_dob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"
+                    android:text="30-May-1980 (36 y)"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_nhs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"
+                    android:text="NHS:"/>
+
+                <TextView
+                    android:id="@+id/tv_nhsnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text"
+                    android:textColor="@color/text_secondary"
+                    android:text="111 111 1111"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_narrow"
+            android:padding="@dimen/padding"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_narrow">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Text.Super_XLarge"
+                        android:text="09:00"/>
+
+                    <TextView
+                        android:id="@+id/tv_hrs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Text"
+                        android:paddingLeft="@dimen/padding_narrow"
+                        android:textColor="@color/text_secondary"
+                        android:text="0hrs/30mins"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/padding"
+                    android:orientation="vertical"
+                    android:gravity="right|center_vertical|center_horizontal">
+                    <ImageView
+                        android:id="@+id/img_ack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/padding_eextra_wide"
+                        android:src="@mipmap/ic_action_status_acknowledged" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textColor="@color/text_secondary"
+                        android:text="Acknowledged"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_job_priority"
+                android:layout_width="@dimen/client_details_icon_size"
+                android:layout_height="@dimen/client_details_icon_size"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_eextra_wide"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="Initial Assessment"
+                style="@style/Text.Large.Bold"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/ll_nav_height"
+            android:layout_marginLeft="@dimen/ll_nav_height"
+            android:stateListAnimator="@animator/raised_button"
+            style="@style/Button"
+            android:text="Open Visit"
+            android:layout_marginTop="@dimen/padding_narrow"/>
+
+        <TextView
+            android:id="@+id/tv_phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text"
+            android:layout_marginTop="@dimen/padding_eextra_wide"
+            android:layout_marginLeft="@dimen/padding_eextra_wide"
+            android:layout_marginBottom="@dimen/padding"
+            android:text="07970 123456"/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text"
+            android:layout_marginLeft="@dimen/padding_eextra_wide"
+            android:layout_marginBottom="@dimen/padding"
+            android:text="12 Street Road, SW14 9TY"/>
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text"
+            android:layout_marginLeft="@dimen/padding_eextra_wide"
+            android:layout_marginBottom="@dimen/padding"
+            android:paddingRight="@dimen/padding_eextra_wide"
+            android:textColor="@color/text_secondary"
+            android:text="Access information like - key code is 1234 or there is a big dog that jumps up at you."/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_eextra_wide"
+            android:weightSum="4"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_narrow"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_action_phone" />
+            <ImageView
+                android:id="@+id/img_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_narrow"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_message_blue" />
+            <ImageView
+                android:id="@+id/img_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_narrow"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_map" />
+            <ImageView
+                android:id="@+id/img_nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_narrow"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_action_clear" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
