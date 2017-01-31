@@ -48,6 +48,7 @@ public class StartNewShiftDialog extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        getDialog().getWindow().setWindowAnimations(R.style.DialogAnimation);
         View rootView = inflater.inflate(R.layout.dialog_start_new_shift, container, false);
         tvStartTime = (TextView) rootView.findViewById(R.id.tv_start_new_shift_time);
         tvFinishTime = (TextView) rootView.findViewById(R.id.tv_finish_time_new_shift);

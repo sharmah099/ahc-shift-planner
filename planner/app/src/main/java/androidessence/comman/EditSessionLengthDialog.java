@@ -49,6 +49,8 @@ public class EditSessionLengthDialog extends DialogFragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        getDialog().getWindow().setWindowAnimations(R.style.DialogAnimation);
         View rootView = inflater.inflate(R.layout.dialog_session_length, container, false);
         tvStartTime = (TextView) rootView.findViewById(R.id.tv_start_time);
         tvFinishTime = (TextView) rootView.findViewById(R.id.tv_finish_time);
