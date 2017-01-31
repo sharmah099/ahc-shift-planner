@@ -3,22 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="25dp"
-    android:paddingLeft="25dp"
-    android:paddingRight="25dp"
-    android:paddingTop="20dp">
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/tv_edit_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit session length"
-        android:textColor="#262626"
-        android:textSize="25sp" />
+        style="@style/Text.XLarge.Bold" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="20dp" />
 
     <LinearLayout
         android:id="@+id/ll_start_time"
@@ -34,16 +30,16 @@
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:text="Start"
-            android:textColor="#787878"
-            android:textSize="15dp" />
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary" />
 
         <TextView
             android:id="@+id/tv_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:textColor="#787878"
-            android:textSize="15dp" />
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary" />
 
     </LinearLayout>
 
@@ -61,16 +57,16 @@
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:text="Finish"
-            android:textColor="#787878"
-            android:textSize="15dp" />
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary"  />
 
         <TextView
             android:id="@+id/tv_finish_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textColor="#787878"
-            android:textSize="15dp" />
+            style="@style/Text.Medium"
+            android:textColor="@color/text_secondary" />
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +93,7 @@
             android:layout_width="40dp"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:textSize="20dp" />
+            style="@style/Text.XLarge"/>
 
         <ImageView
             android:id="@+id/iv_right"
@@ -117,7 +113,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="hours"
-        android:textSize="15sp" />
+        style="@style/Text.Medium"
+        android:textColor="@color/text_secondary"/>
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"
