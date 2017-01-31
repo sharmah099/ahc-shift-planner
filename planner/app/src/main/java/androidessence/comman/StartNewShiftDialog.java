@@ -89,18 +89,14 @@ public class StartNewShiftDialog extends DialogFragment
                     } else {
                         tvError.setVisibility(View.GONE);
                     }
-                    if(inputs == 48) {
+                    if (inputs >= 48 || inputs == 0) {
                         btnRight.setEnabled(false);
                         btnRight.setImageResource(R.mipmap.right_disabled);
-                    } else {
-                        btnRight.setEnabled(true);
-                        btnRight.setImageResource(R.mipmap.ic_right);
-                    }
-
-                    if(inputs ==0) {
                         btnLeft.setEnabled(false);
                         btnLeft.setImageResource(R.mipmap.left_disabled);
-                    } else {
+                    } else if (inputs > 0 && inputs < 48) {
+                        btnRight.setEnabled(true);
+                        btnRight.setImageResource(R.mipmap.ic_right);
                         btnLeft.setImageResource(R.mipmap.ic_left);
                         btnLeft.setEnabled(true);
                     }
