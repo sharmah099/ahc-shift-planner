@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -217,12 +218,14 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 incompleteRv.setVisibility(View.VISIBLE);
                 namesAdapter.refresh(inCompleteItems);
                 setHeightInExpand();
+                expand(incompleteRv);
                 helper.attachToRecyclerView(null);
             } else {
                 ivExpand.setImageResource(R.mipmap.ic_collapse);
                 //tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_collapse, 0);
-                incompleteRv.setVisibility(View.GONE);
-                setHeightInCollapse();
+                //incompleteRv.setVisibility(View.GONE);
+                //setHeightInCollapse();
+                collapse(incompleteRv);
                 helper.attachToRecyclerView(movieRecyclerView);
             }
         }
@@ -308,6 +311,57 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
         jobOverviewFragment.show(fm ,"");
+    }
+
+    public static void expand(final View v) {
+        v.measure(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+        final int targtetHeight = v.getMeasuredHeight();
+
+        v.getLayoutParams().height = 0;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1
+                        ? RecyclerView.LayoutParams.WRAP_CONTENT
+                        : (int)(targtetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
     }
 
 }
