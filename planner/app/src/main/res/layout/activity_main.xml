@@ -66,11 +66,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/padding_medium"
-        android:paddingLeft="10dp"
-        android:paddingRight="5dp"
-        android:paddingTop="@dimen/padding_eextra_wide">
+        android:padding="@dimen/padding_extra_wide">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,28 +75,39 @@
             android:text="Today"/>
 
         <TextView
+            android:padding="@dimen/padding_extra_narrow"
             android:id="@+id/tv_start"
+            android:gravity="start"
             style="@style/Text.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding"
-            android:text="09:00 "/>
+            android:text="09:00"/>
+
+
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"/>
+        <TextView
+            android:padding="@dimen/padding_extra_narrow"
             style="@style/Text.Medium"
-            android:layout_width="0dp"
-            android:layout_weight=".50"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="17:00"
             android:id="@+id/tv_finish" />
 
+
         <TextView
             android:id="@+id/tv_edit"
+            android:paddingRight="@dimen/padding_extra_narrow"
             style="@style/Text.Medium"
-            android:layout_width="wrap_content"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:textColor="@color/primary_blue" />
+            android:textColor="@color/primary_blue"/>
+
 
     </LinearLayout>
 

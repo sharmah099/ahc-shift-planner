@@ -197,4 +197,12 @@
         <item name="android:textSize">20dp</item>
     </style>
 
+    <style name="Text.Title.Shift" parent="@style/Text.Title">
+        <item name="android:drawableBottom">@drawable/title_underline</item>
+        <item name="android:drawablePadding">@dimen/padding_extra_narrow</item>
+        <item name="android:paddingLeft">@dimen/padding_narrow</item>
+        <item name="android:paddingRight">@dimen/padding_narrow</item>
+        <item name="android:textColor">@color/text_title_dark</item>
+        <item name="android:textSize">@dimen/textMedium</item>
+    </style>
 </resources>

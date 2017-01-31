@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         tvFinish = (TextView) findViewById(R.id.tv_finish);
         tvStart =(TextView) findViewById(R.id.tv_start);
         String time = TIME_FORMAT.format(new Date());
-        tvStart.setText(time + " "+ "to" + " ");
+        tvStart.setText(time);
         displayFinishTime();
         PreferenceClass preferences = new PreferenceClass(this);
         String finishTime = preferences.getFinishTime();

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_calener"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="androidessence.planner.CalenerActivity">
+
+    <View
+        android:id="@+id/top_transparent_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#99000000"
+        android:orientation="horizontal"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/left_transparent_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:background="#99000000" />
+
+        <LinearLayout
+            android:padding="24dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@color/background_grey">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Hour"
+                style="@style/Text.XLarge.Bold"
+                android:padding="@dimen/padding_narrow"
+                android:paddingBottom="20dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="09:00"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/padding_narrow"
+                android:stateListAnimator="@animator/raised_button"
+                style="@style/Button"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10:00"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/padding_narrow"
+                android:stateListAnimator="@animator/raised_button"
+                style="@style/Button"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11:00"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/padding_narrow"
+                android:stateListAnimator="@animator/raised_button"
+                style="@style/Button"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/padding_narrow"
+                android:stateListAnimator="@animator/raised_button"
+                style="@style/Button"/>
+
+            <TextView
+                android:paddingTop="@dimen/padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/primary_blue"/>
+        </LinearLayout>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:background="#99000000"></View>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#99000000">
+    </View>
+
+</LinearLayout>
