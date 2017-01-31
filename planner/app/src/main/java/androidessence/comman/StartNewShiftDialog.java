@@ -49,7 +49,6 @@ public class StartNewShiftDialog extends DialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.dialog_start_new_shift, container, false);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         tvStartTime = (TextView) rootView.findViewById(R.id.tv_start_new_shift_time);
         tvFinishTime = (TextView) rootView.findViewById(R.id.tv_finish_time_new_shift);
         etHrs  = (EditText) rootView.findViewById(R.id.et_hours_new_shift);

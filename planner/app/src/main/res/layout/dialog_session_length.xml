@@ -92,6 +92,7 @@
             android:id="@+id/et_hours"
             style="@style/Text.XLarge"
             android:layout_width="40dp"
+            android:maxLength="2"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:inputType="number" />

@@ -50,7 +50,6 @@ public class EditSessionLengthDialog extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dialog_session_length, container, false);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         tvStartTime = (TextView) rootView.findViewById(R.id.tv_start_time);
         tvFinishTime = (TextView) rootView.findViewById(R.id.tv_finish_time);
         etHrs = (EditText) rootView.findViewById(R.id.et_hours);
