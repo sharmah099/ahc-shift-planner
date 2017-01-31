@@ -106,6 +106,6 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
     private void display(int currentTime)
     {
         currentTime = value + currentTime;
-        visitTime.setText("visits shown will be from now (9:00) to " + currentTime + "" + ":00");
+        visitTime.setText("Visits shown will be from now (9:00) to " + currentTime + "" + ":00");
     }
 }

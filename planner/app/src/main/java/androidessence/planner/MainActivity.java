@@ -30,6 +30,7 @@ import java.util.Locale;
 import androidessence.adapters.DragAdapter;
 import androidessence.adapters.ItemAdapter;
 import androidessence.adapters.NamesAdepter;
+import androidessence.comman.AddToShiftDialog;
 import androidessence.comman.DataService;
 import androidessence.comman.DividerItemDecoration;
 import androidessence.comman.EditSessionLengthDialog;
@@ -152,6 +153,13 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         //intent.putExtra("NAME", name);
         //intent.putExtra("FROM_INCOMP", fromIncomplete);
         startActivityForResult(intent, 1000);
+    }
+
+    @Override
+    public void onShowDilaogAddShift() {
+        FragmentManager fm = getFragmentManager();
+        AddToShiftDialog dialogFragment = new AddToShiftDialog();
+        dialogFragment.show(fm, "dialog");
     }
 
     @Override

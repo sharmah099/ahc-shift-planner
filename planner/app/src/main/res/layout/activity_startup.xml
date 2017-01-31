@@ -51,18 +51,19 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/padding_xxextra_wide"
                 android:text="@string/start_new_shift"
-                android:textSize="@dimen/textXLarge" />
+                style="@style/Text.XLarge"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingBottom="@dimen/padding_xxextra_wide"
                 android:paddingTop="@dimen/padding_xxextra_wide"
-                android:textSize="@dimen/textSmall"
-                android:text="@string/Message" />
+                style="@style/Text"
+                android:text="@string/Message"
+                android:maxLines="4"/>
 
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/bt_start_shift"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,14 +81,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/textNormal"
+                style="@style/Text"
                 android:paddingTop="@dimen/padding_xxextra_wide" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="@dimen/textNormal"
+                style="@style/Text"
                 android:paddingTop="@dimen/padding_xxextra_wide"
                 android:text="@string/time_period" />
         </LinearLayout>
@@ -118,7 +119,7 @@
                 android:paddingEnd="@dimen/padding"
                 android:padding="@dimen/expandableListDividerHeight"
                 android:gravity="center"
-                android:textSize="@dimen/textXLarge" />
+                style="@style/Text.XLarge"/>
 
             <ImageView
                 android:id="@+id/iv_right"
@@ -135,6 +136,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="hours"
-            android:textSize="@dimen/textMedium" />
+            style="@style/Text.Medium"/>
     </LinearLayout>
 </LinearLayout>
