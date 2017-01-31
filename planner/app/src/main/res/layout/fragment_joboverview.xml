@@ -260,7 +260,7 @@
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/padding_narrow"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_action_clear" />
+                android:src="@mipmap/ic_navigation" />
         </LinearLayout>
 
     </LinearLayout>
