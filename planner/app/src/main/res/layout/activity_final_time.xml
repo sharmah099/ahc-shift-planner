@@ -34,43 +34,64 @@
             android:layout_weight="0.8"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@color/background_grey">
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Period"
+                android:text="Select Final Time"
                 style="@style/Text.XLarge.Bold"
                 android:padding="@dimen/padding_narrow"
                 android:paddingBottom="20dp"/>
 
             <Button
-                android:id="@+id/btn_1"
+                android:id="@+id/btn_final_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="09:00 - 12:00"
+                android:text="09:00"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="@dimen/padding_narrow"
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button
-                android:id="@+id/btn_2"
+                android:id="@+id/btn_final_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="13:00 - 16:00"
+                android:text="10:00"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="@dimen/padding_narrow"
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button
-                android:id="@+id/btn_3"
+                android:id="@+id/btn_final_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="17:00 - 20:00"
+                android:text="11:00"
                 android:layout_marginBottom="3dp"
                 android:layout_marginTop="@dimen/padding_narrow"
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
+            <Button
+                android:id="@+id/btn_final_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="@dimen/padding_narrow"
+                android:stateListAnimator="@animator/raised_button"
+                style="@style/Button"/>
+
+            <TextView
+                android:id="@+id/tv_final_bc"
+                android:paddingTop="@dimen/padding_narrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:textColor="@color/primary_blue"
+                android:paddingLeft="-10dp"
+                android:drawablePadding="-10dp"
+                android:gravity="center"
+                android:drawableStart="@mipmap/ic_back"/>
         </LinearLayout>
         <View
             android:layout_width="0dp"

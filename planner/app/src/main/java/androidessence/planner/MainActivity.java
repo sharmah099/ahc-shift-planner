@@ -146,11 +146,11 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     public void onStartAct(String time, String name,  int pos, boolean fromIncomplete) {
         this.pos = pos;
         ArrayList<ShiftItems> listItem = (ArrayList<ShiftItems>) itemAdapter.getAllItems();
-        Intent intent = new Intent(this, CalenerActivity.class);
-        intent.putParcelableArrayListExtra("ALL_TIME", listItem);
-        intent.putExtra("TIME", time);
-        intent.putExtra("NAME", name);
-        intent.putExtra("FROM_INCOMP", fromIncomplete);
+        Intent intent = new Intent(this, PeriodActivity.class);
+        //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
+        //intent.putExtra("TIME", time);
+        //intent.putExtra("NAME", name);
+        //intent.putExtra("FROM_INCOMP", fromIncomplete);
         startActivityForResult(intent, 1000);
     }
 
@@ -288,8 +288,5 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
         tvFinish.setText(preferenceClass.getNewFinishTime());
     }
-
-
-
 
 }

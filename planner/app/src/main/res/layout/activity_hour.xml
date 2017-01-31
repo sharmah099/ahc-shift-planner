@@ -34,7 +34,7 @@
             android:layout_weight="0.8"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@color/background_grey">
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="match_parent"
@@ -45,6 +45,7 @@
                 android:paddingBottom="20dp"/>
 
             <Button
+                android:id="@+id/btn_11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="09:00"
@@ -53,6 +54,7 @@
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button
+                android:id="@+id/btn_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="10:00"
@@ -61,6 +63,7 @@
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button
+                android:id="@+id/btn_13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11:00"
@@ -69,6 +72,7 @@
                 android:stateListAnimator="@animator/raised_button"
                 style="@style/Button"/>
             <Button
+                android:id="@+id/btn_14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="12:00"
@@ -78,11 +82,16 @@
                 style="@style/Button"/>
 
             <TextView
-                android:paddingTop="@dimen/padding"
+                android:id="@+id/tv_bc"
+                android:paddingTop="@dimen/padding_narrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/primary_blue"/>
+                android:text="Back"
+                android:drawableStart="@mipmap/ic_back"
+                android:gravity="center"
+                android:textColor="@color/primary_blue"
+                android:paddingLeft="-10dp"
+                android:drawablePadding="-10dp"/>
         </LinearLayout>
         <View
             android:layout_width="0dp"

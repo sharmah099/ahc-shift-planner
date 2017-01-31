@@ -17,6 +17,20 @@
         <activity
             android:name="androidessence.planner.CalenerActivity"
             android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
+
+
+        <activity
+            android:name="androidessence.planner.PeriodActivity"
+            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
+
+        <activity
+            android:name="androidessence.planner.HourActivity"
+            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
+
+        <activity
+            android:name="androidessence.planner.FinalTimeActivity"
+            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
+
         <activity android:name="androidessence.planner.StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
