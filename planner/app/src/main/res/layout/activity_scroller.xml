@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CC202020"
+    android:background="#99000000"
     tools:context=".MainActivity">
 
 
     <RelativeLayout
         android:id="@+id/ll_parent"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:background="@color/white"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_margin="@dimen/padding"
+        android:padding="@dimen/padding"
         android:orientation="horizontal">
 
 
@@ -24,9 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:paddingLeft="10dp"
             android:text="00:00"
-            android:textSize="30dp" />
+            style="@style/Text.XXXLarge.Bold"/>
 
 
         <TextView
@@ -35,15 +34,15 @@
             android:layout_height="wrap_content"
             android:text="Drag to selected ETA"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            style="@style/Text.Medium"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_list_black_24dp"
+            android:src="@mipmap/ic_drag"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:paddingRight="10dp"
             android:id="@+id/imageView" />
 
     </RelativeLayout>
