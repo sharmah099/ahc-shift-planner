@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     {
         helper.attachToRecyclerView(movieRecyclerView);
         // Setup Adapter
-        movieList.add(new ShiftItems(time, "", "", name, "", "", "", "", ""));
+        movieList.add(new ShiftItems(time, "", "", name, "", "", "", "", "", ""));
         itemAdapter.refresh(movieList);
         itemAdapter.updateList((movieList.size() - 1));
     }

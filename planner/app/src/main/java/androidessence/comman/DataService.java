@@ -58,8 +58,8 @@ public class DataService
             String age = jsonItem.getString(Constants.AGE);
             String action = jsonItem.getString(Constants.ACTION);
             String status = jsonItem.getString(Constants.STATUS);
-
-            IncompleteItems item = new IncompleteItems(time, hr, min, name, gender, age , action, dob, status, date);
+            String eta = jsonItem.getString(Constants.ETA);
+            IncompleteItems item = new IncompleteItems(time, hr, min, name, gender, age , action, dob, status, date, eta);
             listIncompleteItems.add(item);
         }
 
@@ -76,8 +76,9 @@ public class DataService
             String age = jsonObjectShift.getString(Constants.AGE);
             String action = jsonObjectShift.getString(Constants.ACTION);
             String status = jsonObjectShift.getString(Constants.STATUS);
+            String eta = jsonObjectShift.getString(Constants.ETA);
 
-            ShiftItems item = new ShiftItems(time, hr, min, name, gender, age , action, dob, status);
+            ShiftItems item = new ShiftItems(time, hr, min, name, gender, age , action, dob, status, eta);
             shiftItems.add(item);
         }
     }

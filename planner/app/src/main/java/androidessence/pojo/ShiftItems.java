@@ -19,8 +19,9 @@ public class ShiftItems implements Parcelable
     private String age;
     private String action;
     private String status;
+    private String eta;
 
-    public ShiftItems(String time, String hour, String min, String name, String gender, String age, String action, String dob, String status) {
+    public ShiftItems(String time, String hour, String min, String name, String gender, String age, String action, String dob, String status, String eta) {
         this.time = time;
         this.hour = hour;
         this.min = min;
@@ -30,6 +31,7 @@ public class ShiftItems implements Parcelable
         this.action = action;
         this.dob = dob;
         this.status = status;
+        this.eta = eta;
     }
 
     public String getTime() {
@@ -114,6 +116,14 @@ public class ShiftItems implements Parcelable
         return draggedMsg;
     }
 
+    public void setEta(String eta) {
+        this.eta = eta;
+    }
+
+    public String getEta() {
+        return eta;
+    }
+
     public int describeContents() {
         return 0;
     }
@@ -130,6 +140,7 @@ public class ShiftItems implements Parcelable
         out.writeString(action);
         out.writeString(status);
         out.writeString(draggedMsg);
+        out.writeString(eta);
     }
 
     public static final Parcelable.Creator<ShiftItems> CREATOR
@@ -154,6 +165,7 @@ public class ShiftItems implements Parcelable
         action = in.readString();
         status = in.readString();
         draggedMsg = in.readString();
+        eta = in.readString();
     }
 
 }

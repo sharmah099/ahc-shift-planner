@@ -18,7 +18,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1979\",\n" +
             "      \"age\": \"37Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"09:30\",\n" +
@@ -30,7 +31,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"04:30\",\n" +
@@ -42,7 +44,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"02:30\",\n" +
@@ -54,7 +57,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1978\",\n" +
             "      \"age\": \"38Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"05:30\",\n" +
@@ -66,7 +70,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"shift jobs\": [\n" +
@@ -79,7 +84,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"11:45\",\n" +
@@ -90,7 +96,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1979\",\n" +
             "      \"age\": \"37Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"in progress\"\n" +
+            "      \"status\": \"in progress\",\n" +
+            "      \"eta\": \"Set ETA2\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"16:30\",\n" +
@@ -101,7 +108,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"submitted\"\n" +
+            "      \"status\": \"submitted\",\n" +
+            "      \"eta\": \"Set ETA3\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"19:30\",\n" +
@@ -112,7 +120,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1960\",\n" +
             "      \"age\": \"56Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"11:30\",\n" +
@@ -123,7 +132,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1960\",\n" +
             "      \"age\": \"56Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA2\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"12:45\",\n" +
@@ -134,7 +144,8 @@ public class JsonData
             "      \"dob\": \"30-Feb-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Administer medication\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA3\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"14:45\",\n" +
@@ -145,7 +156,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Follow-up Visit\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"15:35\",\n" +
@@ -156,7 +168,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Initial Assessment\",\n" +
-            "      \"status\": \"submitted\"\n" +
+            "      \"status\": \"submitted\",\n" +
+            "      \"eta\": \"Set ETA2\"\n" +
             "    },\n" +
             "    {\n" +
             "      \"time\": \"10:35\",\n" +
@@ -167,7 +180,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Dress wounds\",\n" +
-            "      \"status\": \"new\"\n" +
+            "      \"status\": \"new\",\n" +
+            "      \"eta\": \"Set ETA3\"\n" +
             "    },\n" +
             " {\n" +
             "      \"time\": \"10:35\",\n" +
@@ -178,7 +192,8 @@ public class JsonData
             "      \"dob\": \"30-Jan-1990\",\n" +
             "      \"age\": \"26Y\",\n" +
             "      \"action\": \"Initial Assessment\",\n" +
-            "      \"status\": \"in progress\"\n" +
+            "      \"status\": \"in progress\",\n" +
+            "      \"eta\": \"Set ETA1\"\n" +
             "    }\n" +
             "  ]\n" +
             "}";

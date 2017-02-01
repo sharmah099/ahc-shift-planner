@@ -18,5 +18,6 @@ public class Constants
     public static final String AGE = "age";
     public static final String STATUS = "status";
     public static final String ACTION = "action";
+    public static final String ETA = "eta";
 
 }

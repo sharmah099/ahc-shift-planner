@@ -16,9 +16,10 @@ public class IncompleteItems
     private String action;
     private String status;
     private String date;
+    private String eta;
 
     public IncompleteItems(String time, String hour, String min, String name, String gender, String age, String action, String dob,
-                           String status, String date) {
+                           String status, String date, String eta) {
         this.time = time;
         this.hour = hour;
         this.min = min;
@@ -29,6 +30,7 @@ public class IncompleteItems
         this.dob = dob;
         this.status = status;
         this.date = date;
+        this.eta = eta;
     }
 
     public String getTime() {
@@ -109,5 +111,13 @@ public class IncompleteItems
 
     public String getDate() {
         return date;
+    }
+
+    public void setEta(String eta) {
+        this.eta = eta;
+    }
+
+    public String getEta() {
+        return eta;
     }
 }
