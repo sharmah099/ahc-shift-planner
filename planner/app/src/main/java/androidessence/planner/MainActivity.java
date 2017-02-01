@@ -330,7 +330,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     public static void expand(final View v) {
         v.measure(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
-        final int targtetHeight = v.getMeasuredHeight();
+        final int targtetHeight = v.getMeasuredHeight() - 150;
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
