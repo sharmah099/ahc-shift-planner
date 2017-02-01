@@ -14,10 +14,8 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,10 +62,11 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     TextView tvFinish;
     TextView tvStart;
 
-    List<ShiftItems> movieList = null;
+    List<ShiftItems> shiftList = null;
     List<IncompleteItems> inCompleteItems = null;
 
     int positionAddToShift = -1;
+    int targtetHeight = 0;
 
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
@@ -123,9 +122,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         movieRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         DataService service = DataService.getService();
-        List<ShiftItems> sh = service.getShiftItems();
+        shiftList = service.getShiftItems();
         // Setup Adapter
-        itemAdapter = new ItemAdapter(this, sh, this, this);
+        itemAdapter = new ItemAdapter(this, shiftList, this, this);
         movieRecyclerView.setAdapter(itemAdapter);
 
         // Setup ItemTouchHelper
@@ -234,9 +233,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     {
         helper.attachToRecyclerView(movieRecyclerView);
         // Setup Adapter
-        movieList.add(new ShiftItems(time, "", "", name, "", "", "", "", "", ""));
-        itemAdapter.refresh(movieList);
-        itemAdapter.updateList((movieList.size() - 1));
+        shiftList.add(new ShiftItems(time, "", "", name, "", "", "", "", "", ""));
+        itemAdapter.refresh(shiftList);
+        itemAdapter.updateList((shiftList.size() - 1));
     }
 
     @Override
@@ -259,6 +258,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 collapse(incompleteRv);
                 helper.attachToRecyclerView(movieRecyclerView);
             }
+        }
+        else {
+            ivExpand.setImageResource(R.mipmap.ic_collapse);
         }
     }
 
@@ -344,9 +346,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         jobOverviewFragment.show(fm ,"");
     }
 
-    public static void expand(final View v) {
+    public  void expand(final View v) {
         v.measure(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
-        final int targtetHeight = v.getMeasuredHeight() - 150;
+
+        if (namesAdapter.getItemCount() > 1) {
+            targtetHeight = v.getMeasuredHeight() - 130;
+        }
+        else {
+            targtetHeight = v.getMeasuredHeight();
+        }
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
@@ -354,11 +362,14 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
+
+
+
                 v.getLayoutParams().height = interpolatedTime == 1
                         ? RecyclerView.LayoutParams.WRAP_CONTENT
-                        : (int)(targtetHeight * interpolatedTime);
+                        : (int) (targtetHeight * interpolatedTime);
                 v.requestLayout();
-            }
+        }
 
             @Override
             public boolean willChangeBounds() {
@@ -370,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         v.startAnimation(a);
     }
 
-    public static void collapse(final View v) {
+    public  void collapse(final View v) {
         final int initialHeight = v.getMeasuredHeight();
 
         Animation a = new Animation()
@@ -398,13 +409,19 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     @Override
     public  void addToShift()
     {
+        IncompleteItems incompleteItem = inCompleteItems.get(positionAddToShift);
         inCompleteItems.remove(positionAddToShift);
         namesAdapter.refresh(inCompleteItems);
+
+        ShiftItems shiftItem = new ShiftItems(incompleteItem.getTime(), incompleteItem.getHour(), incompleteItem.getMin(),
+                incompleteItem.getName(), incompleteItem.getGender(), incompleteItem.getAge(), incompleteItem.getAction(),
+                incompleteItem.getDob(), incompleteItem.getStatus(), incompleteItem.getEta());
+
+        shiftList.add(shiftItem);
+        itemAdapter.refresh(shiftList);
+        itemAdapter.notifyDataSetChanged();
 
         Intent intent = new Intent(this, ScrollerActivity.class);
         startActivityForResult(intent, 1001);
     }
-
-
-
 }
