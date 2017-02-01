@@ -38,6 +38,7 @@ import androidessence.comman.AddToShiftDialog;
 import androidessence.comman.DataService;
 import androidessence.comman.DividerItemDecoration;
 import androidessence.comman.EditSessionLengthDialog;
+import androidessence.comman.GridViewDialog;
 import androidessence.comman.PreferenceClass;
 import androidessence.comman.StartNewShiftDialog;
 import androidessence.listeners.PlannerItemClickListener;
@@ -171,7 +172,12 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             //intent.putExtra("FROM_INCOMP", fromIncomplete);
             startActivityForResult(intent, 1000);
         }
-
+        else if(etaType.equalsIgnoreCase("Set ETA3"))
+        {
+            FragmentManager fm = getFragmentManager();
+            GridViewDialog dialogFragment = new GridViewDialog();
+            dialogFragment.show(fm, "gridViewDialog");
+        }
     }
 
     @Override

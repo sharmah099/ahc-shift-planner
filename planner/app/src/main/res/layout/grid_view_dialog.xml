@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_grid_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/Text.XLarge.Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="@string/select_eta" />
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="280dp"
+        android:layout_height="350dp"
+        android:columnWidth="60dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="4"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="right"
+        android:verticalSpacing="5dp" />
+</LinearLayout>

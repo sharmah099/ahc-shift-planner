@@ -9,6 +9,7 @@
     <string name="Message">This screen allows you to view just the visits in your current shift and move them about to your preferred order.</string>
     <string name="time_period">set the length of the period to plan below</string>
     <string name="heading">Add to Shift</string>
-    <string name="text_info" >This will add the visit to your current shift to complete.</string>
+    <string name="text_info">This will add the visit to your current shift to complete.</string>
     <string name="text_next">On the next screen you will be asked to select an ETA. </string>
+    <string name="select_eta">Select ETA</string>
 </resources>
