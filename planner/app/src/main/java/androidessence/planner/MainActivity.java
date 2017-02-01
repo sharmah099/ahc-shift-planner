@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     public static void expand(final View v) {
         v.measure(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
-        final int targtetHeight = v.getMeasuredHeight() - 100;
+        final int targtetHeight = v.getMeasuredHeight() - 150;
 
         v.getLayoutParams().height = 0;
         v.setVisibility(View.VISIBLE);
@@ -366,10 +366,8 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             }
         };
 
-        if(targtetHeight > 0) {
-            a.setDuration((int) (targtetHeight / v.getContext().getResources().getDisplayMetrics().density));
-            v.startAnimation(a);
-        }
+        a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
     }
 
     public static void collapse(final View v) {
