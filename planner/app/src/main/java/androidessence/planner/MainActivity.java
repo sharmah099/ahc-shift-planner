@@ -151,15 +151,27 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onStartAct(String time, String name,  int pos, boolean fromIncomplete) {
+    public void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType) {
         this.pos = pos;
         ArrayList<ShiftItems> listItem = (ArrayList<ShiftItems>) itemAdapter.getAllItems();
-        Intent intent = new Intent(this, PeriodActivity.class);
-        //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
-        //intent.putExtra("TIME", time);
-        //intent.putExtra("NAME", name);
-        //intent.putExtra("FROM_INCOMP", fromIncomplete);
-        startActivityForResult(intent, 1000);
+
+        if (etaType.equalsIgnoreCase("Set ETA1")) {
+            Intent intent = new Intent(this, ScrollerActivity.class);
+            //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
+            //intent.putExtra("TIME", time);
+            //intent.putExtra("NAME", name);
+            //intent.putExtra("FROM_INCOMP", fromIncomplete);
+            startActivityForResult(intent, 1001);
+        }
+        else if (etaType.equalsIgnoreCase("Set ETA2")) {
+            Intent intent = new Intent(this, PeriodActivity.class);
+            //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
+            //intent.putExtra("TIME", time);
+            //intent.putExtra("NAME", name);
+            //intent.putExtra("FROM_INCOMP", fromIncomplete);
+            startActivityForResult(intent, 1000);
+        }
+
     }
 
     @Override
@@ -194,6 +206,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 }else {
                     itemAdapter.updateList(pos, time);
                 }
+            }
+            else if (requestCode == 1001) {
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

@@ -71,7 +71,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.eta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listnerAct.onStartAct(time, name,  position, false);
+                listnerAct.onStartAct(time, name,  position, false, holder.eta.getText().toString());
             }
         });
     }
@@ -138,6 +138,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             setPriority(this.priority, items.getAction());
             setStatusIcon(this.ivStatus, items.getStatus());
+
+            this.eta.setText(items.getEta());
         }
 
     }
