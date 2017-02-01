@@ -1,5 +1,6 @@
 package androidessence.adapters;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +12,23 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidessence.comman.AddToShiftDialog;
+import androidessence.comman.GridViewDialog;
 import androidessence.planner.R;
 import androidessence.pojo.GridViewTime;
 
 public class GridViewAdapter extends BaseAdapter
 {
     private Context context;
+    GridViewDialog gridViewDialog;
 
     List<GridViewTime> timeList = new ArrayList<>();
 
-    public GridViewAdapter(Context context, List<GridViewTime> list)
+    public GridViewAdapter(Context context,GridViewDialog gridViewDialog, List<GridViewTime> list)
     {
         this.context = context;
         timeList = list;
+        this.gridViewDialog = gridViewDialog;
     }
 
     @Override
@@ -71,9 +76,10 @@ public class GridViewAdapter extends BaseAdapter
         }
         holder.textview.setText("" + list.getTimeInterval());
 
-        view.setOnClickListener(new View.OnClickListener() {
+        holder.textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gridViewDialog.dismissDialog();
                 Toast.makeText(context, "" + list.getTimeInterval(), Toast.LENGTH_SHORT).show();
             }
         });
