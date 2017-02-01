@@ -41,6 +41,7 @@ import androidessence.comman.EditSessionLengthDialog;
 import androidessence.comman.GridViewDialog;
 import androidessence.comman.PreferenceClass;
 import androidessence.comman.StartNewShiftDialog;
+import androidessence.listeners.AddToShiftListener;
 import androidessence.listeners.PlannerItemClickListener;
 import androidessence.listeners.StartActivityForResultListner;
 import androidessence.pojo.IncompleteItems;
@@ -48,7 +49,7 @@ import androidessence.pojo.ShiftItems;
 
 public class MainActivity extends AppCompatActivity implements StartActivityForResultListner,
         View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,
-        StartNewShiftDialog.StartNewShiftDialogCloseListener, PlannerItemClickListener
+        StartNewShiftDialog.StartNewShiftDialogCloseListener, PlannerItemClickListener, AddToShiftListener
 {
 
     ItemTouchHelper helper;
@@ -63,9 +64,10 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     TextView tvFinish;
     TextView tvStart;
 
-
     List<ShiftItems> movieList = null;
     List<IncompleteItems> inCompleteItems = null;
+
+    int positionAddToShift = -1;
 
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
@@ -181,10 +183,18 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onShowDilaogAddShift() {
+    public void onShowDilaogAddShift(int pos) {
+        positionAddToShift = pos;
         FragmentManager fm = getFragmentManager();
         AddToShiftDialog dialogFragment = new AddToShiftDialog();
+        dialogFragment.setListener(this);
         dialogFragment.show(fm, "dialog");
+    }
+
+    @Override
+    public void onAddShiftCanclled() {
+
+        positionAddToShift = -1;
     }
 
     @Override
@@ -384,5 +394,17 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
         v.startAnimation(a);
     }
+
+    @Override
+    public  void addToShift()
+    {
+        inCompleteItems.remove(positionAddToShift);
+        namesAdapter.refresh(inCompleteItems);
+
+        Intent intent = new Intent(this, ScrollerActivity.class);
+        startActivityForResult(intent, 1001);
+    }
+
+
 
 }

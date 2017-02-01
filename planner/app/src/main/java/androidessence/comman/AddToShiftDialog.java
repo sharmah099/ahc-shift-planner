@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidessence.listeners.AddToShiftListener;
 import androidessence.planner.R;
 
 
@@ -20,6 +21,8 @@ public class AddToShiftDialog extends DialogFragment implements View.OnClickList
     Context context;
     TextView tvCancel;
     Button addToshift;
+    AddToShiftListener listener;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -39,9 +42,11 @@ public class AddToShiftDialog extends DialogFragment implements View.OnClickList
         {
             case R.id.tv_cancel:
                dismissDialog();
+                listener.onAddShiftCanclled();
                 break;
             case R.id.btn_add_shift:
                 dismissDialog();
+                listener.addToShift();
                 break;
 
         }
@@ -53,5 +58,9 @@ public class AddToShiftDialog extends DialogFragment implements View.OnClickList
             AddToShiftDialog df = (AddToShiftDialog) prev;
             df.dismiss();
         }
+    }
+
+    public void setListener(AddToShiftListener listener) {
+        this.listener = listener;
     }
 }
