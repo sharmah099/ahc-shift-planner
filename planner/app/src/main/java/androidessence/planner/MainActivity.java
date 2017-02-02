@@ -197,6 +197,17 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
+    public void updateTime(String time)
+    {
+        ShiftItems items = shiftList.get(pos);
+        items.setTime(time);
+        shiftList.remove(pos);
+        shiftList.add(items);
+        itemAdapter.refresh(shiftList);
+        itemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (data != null) {

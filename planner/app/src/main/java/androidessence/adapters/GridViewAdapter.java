@@ -12,8 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidessence.comman.AddToShiftDialog;
 import androidessence.comman.GridViewDialog;
+import androidessence.listeners.AddToShiftListener;
 import androidessence.planner.R;
 import androidessence.pojo.GridViewTime;
 
@@ -21,6 +21,7 @@ public class GridViewAdapter extends BaseAdapter
 {
     private Context context;
     GridViewDialog gridViewDialog;
+    AddToShiftListener listener;
 
     List<GridViewTime> timeList = new ArrayList<>();
 
@@ -76,13 +77,20 @@ public class GridViewAdapter extends BaseAdapter
         }
         holder.textview.setText("" + list.getTimeInterval());
 
-        holder.textview.setOnClickListener(new View.OnClickListener() {
+        holder.textview.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                listener.updateTime(list.getTimeInterval());
+                notifyDataSetChanged();
                 gridViewDialog.dismissDialog();
-                Toast.makeText(context, "" + list.getTimeInterval(), Toast.LENGTH_SHORT).show();
             }
         });
         return view;
+    }
+    public void addToShiftJob(AddToShiftListener listener)
+    {
+        this.listener = listener;
     }
 }

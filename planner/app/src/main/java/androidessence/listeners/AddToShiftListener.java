@@ -9,4 +9,6 @@ public interface AddToShiftListener
     void addToShift();
 
     void onAddShiftCanclled();
+
+    void updateTime(String time);
 }
