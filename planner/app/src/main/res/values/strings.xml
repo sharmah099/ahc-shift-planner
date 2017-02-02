@@ -12,4 +12,6 @@
     <string name="text_info">This will add the visit to your current shift to complete.</string>
     <string name="text_next">On the next screen you will be asked to select an ETA. </string>
     <string name="select_eta">Select ETA</string>
+    <string name="transition_dialog">transition_dialog</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package androidessence.planner;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     int positionAddToShift = -1;
     int targtetHeight = 0;
+    private int EDIT_SESSION_LENGTH_ACT = 100;
+    private int ADD_TO_SHIFT = 101;
+
 
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
@@ -103,9 +107,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                EditSessionLengthDialog dialogFragment = new EditSessionLengthDialog();
-                dialogFragment.show(fm, "EditSessionLength");
+                Intent intent = new Intent(MainActivity.this, EditSessionLengthActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, tvEdit, getString(R.string.transition_dialog));
+                startActivityForResult(intent, EDIT_SESSION_LENGTH_ACT , options.toBundle());
             }
         });
 
@@ -182,12 +186,11 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onShowDilaogAddShift(int pos) {
-        positionAddToShift = pos;
-        FragmentManager fm = getFragmentManager();
-        AddToShiftDialog dialogFragment = new AddToShiftDialog();
-        dialogFragment.setListener(this);
-        dialogFragment.show(fm, "dialog");
+    public void onShowDilaogAddShift(View view)
+    {
+        Intent intent = new Intent(MainActivity.this,AddToShiftDialogActivity.class);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, getString(R.string.transition_dialog));
+        startActivityForResult(intent, ADD_TO_SHIFT , options.toBundle());
     }
 
     @Override

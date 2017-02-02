@@ -57,7 +57,7 @@ public class NamesAdepter extends RecyclerView.Adapter<NamesAdepter.ViewHolder> 
 
 
     @Override
-    public void onBindViewHolder(ViewHolder myViewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder myViewHolder, final int position) {
 
         IncompleteItems item = list.get(position);
         final String name = item.getName();
@@ -72,7 +72,7 @@ public class NamesAdepter extends RecyclerView.Adapter<NamesAdepter.ViewHolder> 
         myViewHolder.icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listnerAct.onShowDilaogAddShift(position);
+                listnerAct.onShowDilaogAddShift(myViewHolder.icon);
             }
         });
     }
