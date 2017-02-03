@@ -9,6 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by priyank.pandya on 31-01-2017.
  */
@@ -55,47 +57,14 @@ public class ScrollerActivity extends Activity {
 
 
                             int totalHeight = ((View) v.getParent().getParent()).getHeight() - v.getHeight();
-                            int minute = totalHeight / 12;
+                            int minute = totalHeight / 48;
                             int value = val / minute;
-                            switch (value) {
-                                case 0:
-                                    time = "09:00";
-                                    break;
-                                case 1:
-                                    time = "10:00";
-                                    break;
-                                case 2:
-                                    time = "11:00";
-                                    break;
-                                case 3:
-                                    time = "12:00";
-                                    break;
-                                case 4:
-                                    time = "13:00";
-                                    break;
-                                case 5:
-                                    time = "14:00";
-                                    break;
-                                case 6:
-                                    time = "15:00";
-                                    break;
-                                case 7:
-                                    time = "16:00";
-                                    break;
-                                case 8:
-                                    time = "17:00";
-                                    break;
-                                case 9:
-                                    time = "18:00";
-                                    break;
-                                case 10:
-                                    time = "19:00";
-                                    break;
-                                case 11:
-                                    time = "20:00";
-                                    break;
+
+                            if (val % minute == 0){
+                                int timeSlot = (value * 15);
+                                t.setText(getTime(timeSlot));
+
                             }
-                            t.setText(time);
                         }
                         return true;
                     }
@@ -121,5 +90,13 @@ public class ScrollerActivity extends Activity {
                 return false;
             }
         });
+    }
+
+    public String getTime(int min) {
+        double hoursAndMinutes = (min / 60) + (double) min % 60 / 100;
+        String hoursAndMinutesStr = new DecimalFormat("00.00").format(hoursAndMinutes + 9).replace('.', ':');
+
+        //Log.i("pandya", " " + hoursAndMinutesStr);
+        return hoursAndMinutesStr;
     }
 }
