@@ -11,10 +11,10 @@ public class Utils
 
     static List<GridViewTime> getTimeList()
     {
-        timeList.add(new GridViewTime("9:00"));
-        timeList.add(new GridViewTime("9:15"));
-        timeList.add(new GridViewTime("9:30"));
-        timeList.add(new GridViewTime("9:45"));
+        timeList.add(new GridViewTime("09:00"));
+        timeList.add(new GridViewTime("09:15"));
+        timeList.add(new GridViewTime("09:30"));
+        timeList.add(new GridViewTime("09:45"));
         timeList.add(new GridViewTime("10:00"));
         timeList.add(new GridViewTime("10:15"));
         timeList.add(new GridViewTime("10:30"));

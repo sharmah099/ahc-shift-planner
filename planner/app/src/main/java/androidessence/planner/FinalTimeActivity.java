@@ -46,7 +46,9 @@ public class FinalTimeActivity extends AppCompatActivity {
         firstbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent in = new Intent(FinalTimeActivity.this,MainActivity.class);
+                in.putExtra("starttime1",starttime1);
+                startActivity(in);
                 finish();
             }
         });
@@ -71,7 +73,9 @@ public class FinalTimeActivity extends AppCompatActivity {
         secondbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent in = new Intent(FinalTimeActivity.this,MainActivity.class);
+                in.putExtra("starttime1",starttime2);
+                startActivity(in);
                 finish();
             }
         });
@@ -85,7 +89,9 @@ public class FinalTimeActivity extends AppCompatActivity {
         thirdbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent in = new Intent(FinalTimeActivity.this,MainActivity.class);
+                in.putExtra("starttime1",starttime3);
+                startActivity(in);
                 finish();
             }
         });
@@ -99,7 +105,9 @@ public class FinalTimeActivity extends AppCompatActivity {
         fourthbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent in = new Intent(FinalTimeActivity.this,MainActivity.class);
+                in.putExtra("starttime1",starttime4);
+                startActivity(in);
                 finish();
             }
         });

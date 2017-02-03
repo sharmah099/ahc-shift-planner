@@ -75,7 +75,9 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Parsing failed", Toast.LENGTH_SHORT).show();
                 }
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("starttime1","");
+                startActivity(intent);
                 break;
         }
     }

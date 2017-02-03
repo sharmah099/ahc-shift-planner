@@ -38,6 +38,7 @@ import androidessence.comman.DataService;
 import androidessence.comman.DividerItemDecoration;
 import androidessence.comman.EditSessionLengthDialog;
 import androidessence.comman.GridViewDialog;
+import androidessence.comman.MainApp;
 import androidessence.comman.PreferenceClass;
 import androidessence.comman.StartNewShiftDialog;
 import androidessence.listeners.AddToShiftListener;
@@ -72,11 +73,13 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     private int ADD_TO_SHIFT            = 101;
     private int JOBOVERVIEW_DIALOG      = 102;
 
+    MainApp mainApp;
+
 
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
 
-    int pos = 0;
+  //  int pos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -158,8 +161,20 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mainApp = (MainApp)getApplicationContext();
+        updateTimeForETA2();
+        itemAdapter.refresh(shiftList);
+        itemAdapter.notifyDataSetChanged();
+    }
+
+
+    @Override
     public void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType,View view) {
-        this.pos = pos;
+       // this.pos = pos;
+        mainApp.setPos(pos);
         ArrayList<ShiftItems> listItem = (ArrayList<ShiftItems>) itemAdapter.getAllItems();
 
         if (etaType.equalsIgnoreCase("Set ETA1")) {
@@ -207,9 +222,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     @Override
     public void updateTime(String time)
     {
-        ShiftItems items = shiftList.get(pos);
+        ShiftItems items = shiftList.get(mainApp.getPos());
         items.setTime(time);
-        shiftList.remove(pos);
+        shiftList.remove(mainApp.getPos());
         shiftList.add(items);
         itemAdapter.refresh(shiftList);
         itemAdapter.notifyDataSetChanged();
@@ -246,8 +261,17 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                     setHeightInCollapse();
                     recreateAdapter(time, name);
                 }else {
-                    itemAdapter.updateList(pos, time);
+                    itemAdapter.updateList(mainApp.getPos(), time);
                 }
+            }
+            else if (requestCode == 1001) {
+                String time = data.getStringExtra("SCROLLER_TIME");
+                ShiftItems items = shiftList.get(mainApp.getPos());
+                items.setTime(time);
+                shiftList.remove(mainApp.getPos());
+                shiftList.add(items);
+                itemAdapter.refresh(shiftList);
+                itemAdapter.notifyDataSetChanged();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -426,5 +450,22 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
         Intent intent = new Intent(this, ScrollerActivity.class);
         startActivityForResult(intent, 1001);
+    }
+
+    private void updateTimeForETA2() {
+        Bundle bundle ;
+        bundle = getIntent().getExtras();
+        String startTime = bundle.getString("starttime1");
+        if (startTime != null) {
+            if (!startTime.equalsIgnoreCase("")) {
+                ShiftItems items = shiftList.get(mainApp.getPos());
+                items.setTime(startTime);
+                shiftList.remove(mainApp.getPos());
+                shiftList.add(items);
+                itemAdapter.refresh(shiftList);
+                itemAdapter.notifyDataSetChanged();
+                finish();
+            }
+        }
     }
 }

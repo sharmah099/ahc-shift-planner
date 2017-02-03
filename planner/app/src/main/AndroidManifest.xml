@@ -3,6 +3,7 @@
     package="androidessence.planner">
 
     <application
+        android:name="androidessence.comman.MainApp"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/ic_timer"
