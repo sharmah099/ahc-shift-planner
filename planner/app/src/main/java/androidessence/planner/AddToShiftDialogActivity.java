@@ -30,7 +30,6 @@ public class AddToShiftDialogActivity extends AppCompatActivity
                 dismiss();
             }
         };
-        container.setOnClickListener(dismissListener);
         container.findViewById(R.id.btn_add_shift).setOnClickListener(dismissListener);
         container.findViewById(R.id.tv_cancel).setOnClickListener(dismissListener);
     }

@@ -8,5 +8,5 @@ import android.view.View;
 
 public interface PlannerItemClickListener
 {
-    void onItemClicked(View view);
+    void onItemClicked();
 }

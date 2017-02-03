@@ -1,6 +1,8 @@
 package androidessence.planner;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -100,8 +102,14 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                         btnLeft.setImageResource(R.mipmap.ic_left);
                         btnLeft.setEnabled(true);
                     }
+                } else {
+                        tvError.setVisibility(View.VISIBLE);
+                        tvError.setText("Please enter value between 1-48");
+                        btnRight.setEnabled(false);
+                        btnLeft.setEnabled(false);
+                    }
                 }
-            }
+
         });
 
         btnLeft.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +129,12 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
         tvStartTime.setText("(" +time + ")");
         etHrs.setText("8");
         etHrs.setSelection(etHrs.getText().length());
+        btnStartNewShift.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         displayFinishTime();
     }
 
@@ -153,13 +167,14 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                 dismiss();
             }
         };
-        container.setOnClickListener(dismissListener);
         container.findViewById(R.id.btn_start_new_shift).setOnClickListener(dismissListener);
     }
 
     public void dismiss()
     {
-        setResult(Activity.RESULT_CANCELED);
+        Intent intent =  new Intent();
+        intent.putExtra("finishTime","AC");
+        setResult(Activity.RESULT_CANCELED, intent);
         finishAfterTransition();
     }
 
@@ -339,6 +354,11 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                 btnLeft.setImageResource(R.mipmap.left_disabled);
             }
         }
+    }
+
+    public interface StartNewShiftDialogCloseListener
+    {
+        void handleStartNewDialogClose(DialogInterface dialog);
     }
 
 }

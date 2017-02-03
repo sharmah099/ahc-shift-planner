@@ -1,5 +1,6 @@
 package androidessence.planner;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
@@ -47,8 +48,7 @@ import androidessence.pojo.ShiftItems;
 
 
 public class MainActivity extends AppCompatActivity implements StartActivityForResultListner,
-        View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,
-        StartNewShiftDialog.StartNewShiftDialogCloseListener, PlannerItemClickListener, AddToShiftListener
+        View.OnClickListener, PlannerItemClickListener, AddToShiftListener
 {
 
     ItemTouchHelper helper;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     int positionAddToShift = -1;
     int targtetHeight = 0;
-    private int EDIT_SESSION_LENGTH_ACT = 100;
+    public static int EDIT_SESSION_LENGTH_ACT = 100;
     private int ADD_TO_SHIFT            = 101;
     private int JOBOVERVIEW_DIALOG      = 102;
 
@@ -217,6 +217,14 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_CANCELED)
+        {
+            PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
+            tvFinish.setText(preferenceClass.getNewFinishTime());
+        } else if(resultCode == MainActivity.EDIT_SESSION_LENGTH_ACT ) {
+            PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
+            tvFinish.setText(preferenceClass.getFinishTime());
+        }
 
         if (data != null) {
 
@@ -240,9 +248,6 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 }else {
                     itemAdapter.updateList(pos, time);
                 }
-            }
-            else if (requestCode == 1001) {
-
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -308,21 +313,6 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
 
-    @Override
-    public void handleDialogClose(DialogInterface dialog)
-    {
-        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
-        tvFinish.setText(preferenceClass.getFinishTime());
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
-        preferenceClass.clearEndTime();
-        preferenceClass.clearNewFinsihTime();
-    }
-
     private void displayFinishTime()
     {
         int hr = 8;
@@ -352,18 +342,11 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void handleStartNewDialogClose(DialogInterface dialog)
+    public void onItemClicked()
     {
-        PreferenceClass preferenceClass = new PreferenceClass(getApplicationContext());
-        tvFinish.setText(preferenceClass.getNewFinishTime());
-    }
-
-    @Override
-    public void onItemClicked(View view)
-    {
-        Intent intent = new Intent(MainActivity.this,JobOverviewActivity.class);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, getString(R.string.transition_dialog));
-        startActivityForResult(intent, JOBOVERVIEW_DIALOG , options.toBundle());
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
+        jobOverviewFragment.show(fm ,"");
     }
 
     public  void expand(final View v) {

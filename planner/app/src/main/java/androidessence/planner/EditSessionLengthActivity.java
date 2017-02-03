@@ -37,7 +37,7 @@ import androidessence.comman.PreferenceClass;
 
 public class EditSessionLengthActivity extends AppCompatActivity
 {
-    private int NEW_START_SHIFT_ACT = 101;
+    public static int NEW_START_SHIFT_ACT = 101;
 
     private ViewGroup container;
     int count = 8;
@@ -116,6 +116,11 @@ public class EditSessionLengthActivity extends AppCompatActivity
                         btnLeft.setImageResource(R.mipmap.ic_left);
                         btnLeft.setEnabled(true);
                     }
+                } else {
+                    tvError.setVisibility(View.VISIBLE);
+                    tvError.setText("Please enter value between 1-48");
+                    btnRight.setEnabled(false);
+                    btnLeft.setEnabled(false);
                 }
             }
         });
@@ -146,7 +151,6 @@ public class EditSessionLengthActivity extends AppCompatActivity
                 dismiss();
             }
         };
-        container.setOnClickListener(dismissListener);
         container.findViewById(R.id.btn_update).setOnClickListener(dismissListener);
     }
 
@@ -182,7 +186,7 @@ public class EditSessionLengthActivity extends AppCompatActivity
 
     public void dismiss()
     {
-        setResult(Activity.RESULT_CANCELED);
+        setResult(MainActivity.EDIT_SESSION_LENGTH_ACT);
         finishAfterTransition();
     }
 
