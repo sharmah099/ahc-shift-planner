@@ -85,6 +85,7 @@ public class GridViewAdapter extends BaseAdapter
                 listener.updateTime(list.getTimeInterval());
                 notifyDataSetChanged();
                 gridViewDialog.dismissDialog();
+                timeList.clear();
             }
         });
         return view;
