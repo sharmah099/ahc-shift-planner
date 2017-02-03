@@ -1,10 +1,10 @@
 package androidessence.planner;
 
 import android.app.ActivityOptions;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +33,6 @@ import java.util.Locale;
 import androidessence.adapters.DragAdapter;
 import androidessence.adapters.ItemAdapter;
 import androidessence.adapters.NamesAdepter;
-import androidessence.comman.AddToShiftDialog;
 import androidessence.comman.DataService;
 import androidessence.comman.DividerItemDecoration;
 import androidessence.comman.EditSessionLengthDialog;
@@ -45,6 +44,7 @@ import androidessence.listeners.PlannerItemClickListener;
 import androidessence.listeners.StartActivityForResultListner;
 import androidessence.pojo.IncompleteItems;
 import androidessence.pojo.ShiftItems;
+
 
 public class MainActivity extends AppCompatActivity implements StartActivityForResultListner,
         View.OnClickListener,EditSessionLengthDialog.MyDialogCloseListener,
@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     int positionAddToShift = -1;
     int targtetHeight = 0;
     private int EDIT_SESSION_LENGTH_ACT = 100;
-    private int ADD_TO_SHIFT = 101;
+    private int ADD_TO_SHIFT            = 101;
+    private int JOBOVERVIEW_DIALOG      = 102;
 
 
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType) {
+    public void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType,View view) {
         this.pos = pos;
         ArrayList<ShiftItems> listItem = (ArrayList<ShiftItems>) itemAdapter.getAllItems();
 
@@ -170,12 +171,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             startActivityForResult(intent, 1001);
         }
         else if (etaType.equalsIgnoreCase("Set ETA2")) {
-            Intent intent = new Intent(this, PeriodActivity.class);
+            Intent intent = new Intent(MainActivity.this, PeriodActivity.class);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, view, getString(R.string.transition_dialog));
+            startActivityForResult(intent, 1000 , options.toBundle());
+
             //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
             //intent.putExtra("TIME", time);
             //intent.putExtra("NAME", name);
             //intent.putExtra("FROM_INCOMP", fromIncomplete);
-            startActivityForResult(intent, 1000);
+            //startActivityForResult(intent, 1000);
         }
         else if(etaType.equalsIgnoreCase("Set ETA3"))
         {
@@ -186,12 +190,13 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onShowDilaogAddShift(View view)
+    public void onShowDialogAddShift(View view)
     {
         Intent intent = new Intent(MainActivity.this,AddToShiftDialogActivity.class);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, getString(R.string.transition_dialog));
         startActivityForResult(intent, ADD_TO_SHIFT , options.toBundle());
     }
+
 
     @Override
     public void onAddShiftCanclled() {
@@ -354,10 +359,11 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onItemClicked(){
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
-        jobOverviewFragment.show(fm ,"");
+    public void onItemClicked(View view)
+    {
+        Intent intent = new Intent(MainActivity.this,JobOverviewActivity.class);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, getString(R.string.transition_dialog));
+        startActivityForResult(intent, JOBOVERVIEW_DIALOG , options.toBundle());
     }
 
     public  void expand(final View v) {

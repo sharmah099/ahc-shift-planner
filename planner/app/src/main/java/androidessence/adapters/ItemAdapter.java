@@ -43,7 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                plannerItemClickListener.onItemClicked();
+                plannerItemClickListener.onItemClicked(view);
             }
         });
         return new ViewHolder(itemView);
@@ -71,7 +71,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.eta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listnerAct.onStartAct(time, name,  position, false, holder.eta.getText().toString());
+                listnerAct.onStartAct(time, name,  position, false, holder.eta.getText().toString(),v);
             }
         });
     }

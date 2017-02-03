@@ -1,27 +1,35 @@
 package androidessence.planner;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.ArcMotion;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import androidessence.comman.MorphDialogToView;
+import androidessence.comman.MorphViewToDialog;
 import androidessence.planner.FinalTimeActivity;
 import androidessence.planner.PeriodActivity;
 import androidessence.planner.R;
 
-public class HourActivity extends Activity {
+public class HourActivity extends AppCompatActivity {
 
 
     Button btn4, btn5, btn6, btn7;
     TextView backbtn;
     MainActivity ma;
     String starttime;
+    private ViewGroup container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +89,7 @@ public class HourActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                intentfunction(starttime1, starttime);
+                intentfunction(starttime1, starttime,btn4);
 
                 finish();
 
@@ -92,7 +100,7 @@ public class HourActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                intentfunction(starttime2, starttime);
+                intentfunction(starttime2, starttime,btn5);
                 finish();
             }
         });
@@ -102,7 +110,7 @@ public class HourActivity extends Activity {
             public void onClick(View v) {
 
 
-                intentfunction(starttime3, starttime);
+                intentfunction(starttime3, starttime,btn6);
                 finish();
             }
         });
@@ -111,7 +119,7 @@ public class HourActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                intentfunction(starttime4, starttime);
+                intentfunction(starttime4, starttime,btn7);
                 finish();
             }
         });
@@ -119,26 +127,27 @@ public class HourActivity extends Activity {
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HourActivity.this, PeriodActivity.class);
-                // ma.callpopup();
-                startActivity(i);
-                overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
-                finish();
+                Intent intent = new Intent(HourActivity.this, PeriodActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(HourActivity.this, v, getString(R.string.transition_dialog));
+                startActivityForResult(intent, 1000 , options.toBundle());
+                dismiss();
             }
         });
 
+        container = (ViewGroup) findViewById(R.id.container);
+        setupSharedEelementTransitions();
+
     }
 
-    public void intentfunction(String starttime1, String starttime) {
-
-
-        Intent in = new Intent(HourActivity.this, FinalTimeActivity.class);
+    public void intentfunction(String starttime1, String starttime,View view)
+    {
+        Intent intent = new Intent(HourActivity.this, FinalTimeActivity.class);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(HourActivity.this, view, getString(R.string.transition_dialog));
         Bundle bunanimation = new Bundle();
         bunanimation.putString("starttime1", starttime1);
         bunanimation.putString("starttime", starttime);
-        in.putExtras(bunanimation);
-        startActivity(in);
-        overridePendingTransition(R.anim.animation, R.anim.animation2);
+        intent.putExtras(bunanimation);
+        startActivityForResult(intent, 1000 , options.toBundle());
     }
 
 
@@ -148,6 +157,38 @@ public class HourActivity extends Activity {
         startActivity(i);
         overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
 
-        finish();
+        dismiss();
+        finishAfterTransition();
+    }
+
+    public void setupSharedEelementTransitions()
+    {
+        ArcMotion arcMotion = new ArcMotion();
+        arcMotion.setMinimumHorizontalAngle(50f);
+        arcMotion.setMinimumVerticalAngle(50f);
+
+        Interpolator easeInOut = AnimationUtils.loadInterpolator(this, android.R.interpolator.fast_out_slow_in);
+
+        MorphViewToDialog sharedEnter = new MorphViewToDialog();
+        sharedEnter.setPathMotion(arcMotion);
+        sharedEnter.setInterpolator(easeInOut);
+
+        MorphDialogToView sharedReturn = new MorphDialogToView();
+        sharedReturn.setPathMotion(arcMotion);
+        sharedReturn.setInterpolator(easeInOut);
+
+        if (container != null) {
+            sharedEnter.addTarget(container);
+            sharedReturn.addTarget(container);
+        }
+        getWindow().setSharedElementEnterTransition(sharedEnter);
+        getWindow().setSharedElementReturnTransition(sharedReturn);
+    }
+
+
+    private void dismiss()
+    {
+        setResult(Activity.RESULT_CANCELED);
+        finishAfterTransition();
     }
 }

@@ -25,8 +25,6 @@ import android.support.annotation.ColorInt;
 import android.util.Property;
 
 /**
- * 形态和颜色可以发生变化的Drawable，形态变化是通过cornerRadius来实现的，颜色变化是通过paint的color来实现的
- * 该类在Drawable的基础上添加了cornerRadius和color两个属性，前者是float类型，后者是int类型
  * <p/>
  * A drawable that can morph size, shape (via it's corner radius) and color.  Specifically this is
  * useful for animating between a FAB and a dialog.

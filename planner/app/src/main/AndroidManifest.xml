@@ -18,22 +18,10 @@
             android:name="androidessence.planner.CalenerActivity"
             android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
 
-
-        <activity
-            android:name="androidessence.planner.PeriodActivity"
-            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
-
         <activity
             android:name="androidessence.planner.ScrollerActivity"
             android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
 
-        <activity
-            android:name="androidessence.planner.HourActivity"
-            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
-
-        <activity
-            android:name="androidessence.planner.FinalTimeActivity"
-            android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
         <activity
             android:name=".EditSessionLengthActivity"
             android:theme="@style/AppTheme.Dialog" />
@@ -43,6 +31,21 @@
         <activity
             android:name=".AddToShiftDialogActivity"
             android:theme="@style/AppTheme.Dialog" />
+
+        <activity
+            android:name=".JobOverviewActivity"
+            android:theme="@style/AppTheme.Dialog" />
+
+        <activity
+            android:name=".FinalTimeActivity"
+            android:theme="@style/AppTheme.Dialog" />
+
+        <activity
+            android:name=".HourActivity"
+            android:theme="@style/AppTheme.Dialog" />
+
+        <activity android:name=".PeriodActivity"
+        android:theme="@style/AppTheme.Dialog" />
 
 
         <activity android:name="androidessence.planner.StartupActivity">

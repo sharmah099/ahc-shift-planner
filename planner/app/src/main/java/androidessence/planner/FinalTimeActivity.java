@@ -4,19 +4,27 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.ArcMotion;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class FinalTimeActivity extends Activity {
+import androidessence.comman.MorphDialogToView;
+import androidessence.comman.MorphViewToDialog;
+
+public class FinalTimeActivity extends AppCompatActivity {
 
 
     Button firstbtn, secondbtn, thirdbtn, fourthbtn;
     TextView backbtn1;
     String starttime1, starttime;
+    private ViewGroup container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +119,33 @@ public class FinalTimeActivity extends Activity {
             }
         });
 
+        container = (ViewGroup) findViewById(R.id.container);
+        setupSharedEelementTransitions();
+
+    }
+
+    public void setupSharedEelementTransitions()
+    {
+        ArcMotion arcMotion = new ArcMotion();
+        arcMotion.setMinimumHorizontalAngle(50f);
+        arcMotion.setMinimumVerticalAngle(50f);
+
+        Interpolator easeInOut = AnimationUtils.loadInterpolator(this, android.R.interpolator.fast_out_slow_in);
+
+        MorphViewToDialog sharedEnter = new MorphViewToDialog();
+        sharedEnter.setPathMotion(arcMotion);
+        sharedEnter.setInterpolator(easeInOut);
+
+        MorphDialogToView sharedReturn = new MorphDialogToView();
+        sharedReturn.setPathMotion(arcMotion);
+        sharedReturn.setInterpolator(easeInOut);
+
+        if (container != null) {
+            sharedEnter.addTarget(container);
+            sharedReturn.addTarget(container);
+        }
+        getWindow().setSharedElementEnterTransition(sharedEnter);
+        getWindow().setSharedElementReturnTransition(sharedReturn);
     }
 
     @Override
@@ -123,5 +158,6 @@ public class FinalTimeActivity extends Activity {
         startActivity(i);
         overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
         finish();
+        finishAfterTransition();
     }
 }

@@ -3,21 +3,29 @@ package androidessence.planner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.transition.ArcMotion;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import androidessence.comman.MorphDialogToView;
+import androidessence.comman.MorphViewToDialog;
 import androidessence.planner.HourActivity;
 import androidessence.planner.MainActivity;
 import androidessence.planner.R;
 
-public class PeriodActivity extends Activity {
+public class PeriodActivity extends AppCompatActivity {
 
 
     Button btn1, btn2, btn3;
     static String starttime, starttime2, starttime3;
+    private ViewGroup container;
 
 
     @Override
@@ -84,9 +92,13 @@ public class PeriodActivity extends Activity {
             }
         });
 
+        container = (ViewGroup) findViewById(R.id.container);
+        setupSharedEelementTransitions();
+
     }
 
-    public void callintentfunction(String starttime) {
+    public void callintentfunction(String starttime)
+    {
 
         Intent i = new Intent(getApplicationContext(), HourActivity.class);
         Bundle bunanimation = new Bundle();
@@ -98,6 +110,38 @@ public class PeriodActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        finish();
+       dismiss();
     }
+
+    public void setupSharedEelementTransitions()
+    {
+        ArcMotion arcMotion = new ArcMotion();
+        arcMotion.setMinimumHorizontalAngle(50f);
+        arcMotion.setMinimumVerticalAngle(50f);
+
+        Interpolator easeInOut = AnimationUtils.loadInterpolator(this, android.R.interpolator.fast_out_slow_in);
+
+        MorphViewToDialog sharedEnter = new MorphViewToDialog();
+        sharedEnter.setPathMotion(arcMotion);
+        sharedEnter.setInterpolator(easeInOut);
+
+        MorphDialogToView sharedReturn = new MorphDialogToView();
+        sharedReturn.setPathMotion(arcMotion);
+        sharedReturn.setInterpolator(easeInOut);
+
+        if (container != null) {
+            sharedEnter.addTarget(container);
+            sharedReturn.addTarget(container);
+        }
+        getWindow().setSharedElementEnterTransition(sharedEnter);
+        getWindow().setSharedElementReturnTransition(sharedReturn);
+    }
+
+
+    private void dismiss()
+    {
+        setResult(Activity.RESULT_CANCELED);
+        finishAfterTransition();
+    }
+
 }
