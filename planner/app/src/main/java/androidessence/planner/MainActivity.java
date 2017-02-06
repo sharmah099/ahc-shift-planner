@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             GridViewDialog dialogFragment = new GridViewDialog();
             dialogFragment.show(fm, "gridViewDialog");
         }
+        else if(etaType.equalsIgnoreCase("Set ETA4")){
+            Intent in = new Intent(this,ShiftscreenActivity.class);
+            startActivityForResult(in,1002);
+        }
     }
 
     @Override
@@ -272,6 +276,9 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 shiftList.add(items);
                 itemAdapter.refresh(shiftList);
                 itemAdapter.notifyDataSetChanged();
+            }
+            else if (requestCode == 1002) {
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

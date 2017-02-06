@@ -48,6 +48,9 @@
         <activity android:name=".PeriodActivity"
         android:theme="@style/AppTheme.Dialog" />
 
+        <activity android:name=".ShiftscreenActivity"
+            android:theme="@style/AppTheme.Dialog"/>
+
 
         <activity android:name="androidessence.planner.StartupActivity">
             <intent-filter>
