@@ -21,6 +21,7 @@ import android.view.animation.Transformation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         shiftList = service.getShiftItems();
         // Setup Adapter
         itemAdapter = new ItemAdapter(this, shiftList, this, this);
+        itemAdapter.refresh();
         movieRecyclerView.setAdapter(itemAdapter);
 
         // Setup ItemTouchHelper
@@ -202,15 +204,18 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             GridViewDialog dialogFragment = new GridViewDialog();
             dialogFragment.show(fm, "gridViewDialog");
         }
-        else if(etaType.equalsIgnoreCase("Set ETA4")){
+        else if(etaType.equalsIgnoreCase("Set ETA5")){
             Intent in = new Intent(this,ShiftscreenActivity.class);
             startActivityForResult(in,1002);
         }
     }
 
     @Override
-    public void onShowDialogAddShift(View view)
+    public void onShowDialogAddShift(View view, int pos)
     {
+        positionAddToShift = pos;
+        MainApp app = (MainApp) this.getApplicationContext();
+        app.setAddToShiftListener(this);
         Intent intent = new Intent(MainActivity.this,AddToShiftDialogActivity.class);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view, getString(R.string.transition_dialog));
         startActivityForResult(intent, ADD_TO_SHIFT , options.toBundle());
@@ -269,12 +274,17 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 }
             }
             else if (requestCode == 1001) {
+
                 String time = data.getStringExtra("SCROLLER_TIME");
-                ShiftItems items = shiftList.get(mainApp.getPos());
+                //ShiftItems items = shiftList.get(mainApp.getPos());
+                ShiftItems items = shiftList.get(shiftList.size() -1);
                 items.setTime(time);
-                shiftList.remove(mainApp.getPos());
+
+                //shiftList.remove(mainApp.getPos());
+                shiftList.remove(shiftList.size() -1);
                 shiftList.add(items);
                 itemAdapter.refresh(shiftList);
+                itemAdapter.refresh();
                 itemAdapter.notifyDataSetChanged();
             }
             else if (requestCode == 1002) {
@@ -452,8 +462,8 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 incompleteItem.getDob(), incompleteItem.getStatus(), incompleteItem.getEta());
 
         shiftList.add(shiftItem);
-        itemAdapter.refresh(shiftList);
-        itemAdapter.notifyDataSetChanged();
+        //itemAdapter.refresh(shiftList);
+        //itemAdapter.notifyDataSetChanged();
 
         Intent intent = new Intent(this, ScrollerActivity.class);
         startActivityForResult(intent, 1001);

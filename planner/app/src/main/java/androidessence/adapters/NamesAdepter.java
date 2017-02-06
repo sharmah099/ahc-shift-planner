@@ -72,7 +72,7 @@ public class NamesAdepter extends RecyclerView.Adapter<NamesAdepter.ViewHolder> 
         myViewHolder.icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listnerAct.onShowDialogAddShift(myViewHolder.icon);
+                listnerAct.onShowDialogAddShift(myViewHolder.icon, position);
             }
         });
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Planner</string>
+    <string name="app_name">Shift Planner</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

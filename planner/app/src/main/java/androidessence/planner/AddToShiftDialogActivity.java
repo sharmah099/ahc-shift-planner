@@ -8,13 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.widget.Button;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import androidessence.comman.MainApp;
 import androidessence.comman.MorphDialogToView;
 import androidessence.comman.MorphViewToDialog;
+import androidessence.listeners.AddToShiftListener;
 
-public class AddToShiftDialogActivity extends AppCompatActivity
+public class AddToShiftDialogActivity extends AppCompatActivity implements View.OnClickListener
 {
     private ViewGroup container;
+
+    private AddToShiftListener addToShiftListener;
+
+    Button addToShiftButton;
+
+    TextView cancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,14 +36,20 @@ public class AddToShiftDialogActivity extends AppCompatActivity
         container = (ViewGroup) findViewById(R.id.container);
         setupSharedEelementTransitions();
 
-        View.OnClickListener dismissListener = new View.OnClickListener() {
+        addToShiftButton = (Button) findViewById(R.id.btn_add_shift);
+        cancelButton = (TextView) findViewById(R.id.tv_cancel) ;
+
+        addToShiftButton.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
+
+       /* View.OnClickListener dismissListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
         };
         container.findViewById(R.id.btn_add_shift).setOnClickListener(dismissListener);
-        container.findViewById(R.id.tv_cancel).setOnClickListener(dismissListener);
+        container.findViewById(R.id.tv_cancel).setOnClickListener(dismissListener);*/
     }
 
     @Override
@@ -67,5 +85,22 @@ public class AddToShiftDialogActivity extends AppCompatActivity
         }
         getWindow().setSharedElementEnterTransition(sharedEnter);
         getWindow().setSharedElementReturnTransition(sharedReturn);
+    }
+
+    @Override
+    public void onClick(View v) {
+        addToShiftListener = ((MainApp)this.getApplicationContext()).getAddToShiftListener();
+        switch (v.getId())
+        {
+            case R.id.tv_cancel:
+                finish();
+                addToShiftListener.onAddShiftCanclled();
+                break;
+            case R.id.btn_add_shift:
+                finish();
+                addToShiftListener.addToShift();
+                break;
+
+        }
     }
 }

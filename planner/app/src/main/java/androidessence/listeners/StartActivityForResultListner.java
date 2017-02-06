@@ -9,5 +9,5 @@ import android.view.View;
 public interface StartActivityForResultListner
 {
     void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType,View view);
-    void onShowDialogAddShift(View view);
+    void onShowDialogAddShift(View view, int position);
 }
