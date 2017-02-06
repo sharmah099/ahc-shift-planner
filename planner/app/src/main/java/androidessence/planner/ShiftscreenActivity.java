@@ -380,6 +380,8 @@ public class ShiftscreenActivity extends Activity {
                     String hour = jobsTime.getTime();
                     String[] arr = hour.split(":");
                     final String hourtime = arr[0];
+
+                    finish();
                 }
             }));
         }
