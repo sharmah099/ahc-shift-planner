@@ -201,7 +201,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         if (action.equals("Dress wounds")) {
             tvPriority.setText("D");
-            tvPriority.setBackgroundColor(Color.GREEN);
         }
         else if (action.equals("Administer medication")){
             tvPriority.setText("U");
@@ -209,7 +208,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         }
         else if (action.equals("Initial Assessment")){
             tvPriority.setText("S");
-            tvPriority.setBackgroundColor(Color.rgb(255,69,0));
+            tvPriority.setBackgroundColor(Color.BLUE);
         }
     }
 
