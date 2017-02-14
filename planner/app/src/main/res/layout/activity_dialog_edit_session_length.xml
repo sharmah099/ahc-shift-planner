@@ -105,14 +105,13 @@
                 android:stateListAnimator="@animator/raised_button"
                 android:text="Finish" />
 
-            <EditText
-                android:id="@+id/et_hours"
+            <TextView
+                android:id="@+id/tv_hours"
                 style="@style/Text.XLarge"
                 android:layout_width="40dp"
-                android:maxLength="2"
+                android:textColor="@color/text_primary"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:inputType="number" />
+                android:gravity="center" />
 
             <ImageView
                 android:id="@+id/iv_right"

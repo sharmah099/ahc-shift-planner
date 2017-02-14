@@ -1,22 +1,16 @@
 package androidessence.planner;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.transition.ArcMotion;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,8 +32,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
     int count = 8;
     ImageView btnLeft, btnRight;
     Button btnStartNewShift;
-    TextView tvFinishTime,tvStartTime,tvError;
-    EditText etHrs;
+    TextView tvFinishTime,tvStartTime,tvError, tvHrs;
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
     public static final DateFormat DAY_FORMAT = new SimpleDateFormat("E", Locale.getDefault());
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
@@ -54,71 +47,17 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
         setupSharedEelementTransitions();
         tvStartTime = (TextView) findViewById(R.id.tv_start_new_shift_time);
         tvFinishTime = (TextView) findViewById(R.id.tv_finish_time_new_shift);
-        etHrs  = (EditText) findViewById(R.id.et_hours_new_shift);
+        tvHrs  = (TextView) findViewById(R.id.tv_hours_new_shift);
         btnLeft = (ImageView) findViewById(R.id.iv_left_new_shift);
         btnRight = (ImageView)findViewById(R.id.iv_right_new_shift);
         btnStartNewShift = (Button)findViewById(R.id.btn_start_new_shift);
         tvError = (TextView) findViewById(R.id.tv_error);
-        etHrs.setOnEditorActionListener(new TextView.OnEditorActionListener()
-        {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    displayFinishTime();
-                }
-                return false;
-            }
-        });
-
-        etHrs.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (isValidInt(etHrs.getText().toString())) {
-                    int inputs = Integer.valueOf(etHrs.getText().toString());
-                    if (inputs >= 48 || inputs <= 0) {
-                        tvError.setVisibility(View.VISIBLE);
-                    } else {
-                        tvError.setVisibility(View.GONE);
-                    }
-                    if (inputs >= 48 || inputs == 0) {
-                        btnRight.setEnabled(false);
-                        btnRight.setImageResource(R.mipmap.right_disabled);
-                        btnLeft.setEnabled(false);
-                        btnLeft.setImageResource(R.mipmap.left_disabled);
-                    } else if (inputs > 0 && inputs < 48) {
-                        btnRight.setEnabled(true);
-                        btnRight.setImageResource(R.mipmap.ic_right);
-                        btnLeft.setImageResource(R.mipmap.ic_left);
-                        btnLeft.setEnabled(true);
-                    }
-                } else {
-                        tvError.setVisibility(View.VISIBLE);
-                        tvError.setText("Please enter value between 1-48");
-                        btnRight.setEnabled(false);
-                        btnLeft.setEnabled(false);
-                    }
-                }
-
-        });
-
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 decrement();
             }
         });
-
         btnRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,8 +66,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
         });
         String time = TIME_FORMAT.format(new Date());
         tvStartTime.setText("(" +time + ")");
-        etHrs.setText("8");
-        etHrs.setSelection(etHrs.getText().length());
+        tvHrs.setText("8");
         btnStartNewShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,9 +118,9 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
 
     private void displayFinishTime()
     {
-        if(isValidInt(etHrs.getText().toString())) {
+        if(isValidInt(tvHrs.getText().toString())) {
             tvError.setVisibility(View.GONE);
-            int hr = Integer.valueOf(etHrs.getText().toString());
+            int hr = Integer.valueOf(tvHrs.getText().toString());
             String finishTime = addHrs(hr);
             tvFinishTime.setText(finishTime);
             String splitTime[] = finishTime.split(":");
@@ -219,8 +157,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
      */
     private void display(int number)
     {
-        etHrs.setText("" + number);
-        etHrs.setSelection(etHrs.getText().length());
+        tvHrs.setText("" + number);
     }
 
 
@@ -258,10 +195,10 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
      * Increment
      */
     private void increment() {
-        if (!TextUtils.isEmpty(etHrs.getText().toString())) {
-            if (isValidInt(etHrs.getText().toString())) {
+        if (!TextUtils.isEmpty(tvHrs.getText().toString())) {
+            if (isValidInt(tvHrs.getText().toString())) {
                 tvError.setVisibility(View.GONE);
-                int hr = Integer.valueOf(etHrs.getText().toString());
+                int hr = Integer.valueOf(tvHrs.getText().toString());
                 count = hr + 1;
                 if (count >= 1 && count < 24) {
                     btnLeft.setImageResource(R.mipmap.ic_left);
@@ -275,7 +212,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                     display(count);
                     displayFinishTime();
                     btnRight.setEnabled(false);
-                    btnRight.setImageResource(R.mipmap.right_disabled);
+                    btnRight.setImageResource(R.mipmap.ic_right_disabled);
                 }
             } else {
                 count = count + 1;
@@ -291,7 +228,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                     display(count);
                     displayFinishTime();
                     btnRight.setEnabled(false);
-                    btnRight.setImageResource(R.mipmap.right_disabled);
+                    btnRight.setImageResource(R.mipmap.ic_right_disabled);
                 }
             }
         }
@@ -302,14 +239,14 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
      */
     private void decrement()
     {
-        if(!TextUtils.isEmpty(etHrs.getText().toString())) {
-            if (isValidInt(etHrs.getText().toString())) {
+        if(!TextUtils.isEmpty(tvHrs.getText().toString())) {
+            if (isValidInt(tvHrs.getText().toString())) {
                 tvError.setVisibility(View.GONE);
-                int hr = Integer.valueOf(etHrs.getText().toString());
+                int hr = Integer.valueOf(tvHrs.getText().toString());
                 count = hr - 1;
                 if (count == 0) {
                     btnLeft.setEnabled(false);
-                    btnLeft.setImageResource(R.mipmap.left_disabled);
+                    btnLeft.setImageResource(R.mipmap.ic_left_disabled);
                     display(count);
                     displayFinishTime();
                 } else if (count >= 1 && count < 24) {
@@ -325,7 +262,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                     displayFinishTime();
                 } else {
                     btnLeft.setEnabled(false);
-                    btnLeft.setImageResource(R.mipmap.left_disabled);
+                    btnLeft.setImageResource(R.mipmap.ic_left_disabled);
                 }
             } else {
                 tvError.setVisibility(View.VISIBLE);
@@ -335,7 +272,7 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
             count = count - 1;
             if (count == 0) {
                 btnLeft.setEnabled(false);
-                btnLeft.setImageResource(R.mipmap.left_disabled);
+                btnLeft.setImageResource(R.mipmap.ic_left_disabled);
                 display(count);
                 displayFinishTime();
             } else if (count >= 1 && count < 24) {
@@ -351,14 +288,9 @@ public class StartNewShiftDialogActivity extends AppCompatActivity
                 displayFinishTime();
             } else {
                 btnLeft.setEnabled(false);
-                btnLeft.setImageResource(R.mipmap.left_disabled);
+                btnLeft.setImageResource(R.mipmap.ic_left_disabled);
             }
         }
-    }
-
-    public interface StartNewShiftDialogCloseListener
-    {
-        void handleStartNewDialogClose(DialogInterface dialog);
     }
 
 }
