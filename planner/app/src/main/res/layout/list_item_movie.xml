@@ -25,7 +25,7 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Text.Large.Bold" />
+                style="@style/Text.Medium.Bold" />
 
             <TextView
                 android:paddingTop="@dimen/padding_extra_narrow"
@@ -57,7 +57,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    style="@style/Text.Large.Bold"/>
+                    style="@style/Text.Medium.Bold"
+                    android:textAllCaps="true"/>
 
 
                 <TextView
@@ -68,7 +69,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center|end"
                     android:text="Set ETA"
-                    android:textColor="@color/primary_blue"/>
+                    android:textColor="@color/primary_blue"
+                    style="@style/Text"/>
             </LinearLayout>
 
             <TextView

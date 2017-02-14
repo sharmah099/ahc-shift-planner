@@ -201,28 +201,28 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         if (action.equals("Dress wounds")) {
             tvPriority.setText("D");
-            tvPriority.setBackgroundColor(Color.YELLOW);
+            tvPriority.setBackgroundColor(Color.GREEN);
         }
         else if (action.equals("Administer medication")){
             tvPriority.setText("U");
-            tvPriority.setBackgroundColor(Color.CYAN);
+            tvPriority.setBackgroundColor(Color.BLUE);
         }
         else if (action.equals("Initial Assessment")){
             tvPriority.setText("S");
-            tvPriority.setBackgroundColor(Color.MAGENTA);
+            tvPriority.setBackgroundColor(Color.rgb(255,69,0));
         }
     }
 
     private void setStatusIcon(ImageView tvStatus, String status){
 
         if (status.equals("submitted")) {
-            tvStatus.setImageResource(R.mipmap.ic_job_page_set_status_finished_mandatory);
+            tvStatus.setImageResource(R.mipmap.ic_finish_visit);
         }
         else if (status.equals("new")){
-            tvStatus.setImageResource(R.mipmap.ic_status_new);
+            tvStatus.setImageResource(R.mipmap.ic_new);
         }
         else if (status.equals("in progress")){
-            tvStatus.setImageResource(R.mipmap.ic_job_page_set_status_inprogress_mandatory);
+            tvStatus.setImageResource(R.mipmap.ic_inprogress);
         }
     }
 }

@@ -69,7 +69,7 @@ public class JsonData
             "      \"gender\": \"Female\",\n" +
             "      \"dob\": \"30-Feb-1979\",\n" +
             "      \"age\": \"37Y\",\n" +
-            "      \"action\": \"Follow-up Visit\",\n" +
+            "      \"action\": \"Dress wounds\",\n" +
             "      \"status\": \"in progress\",\n" +
             "      \"eta\": \"Set ETA1\"\n" +
             "    },\n" +
@@ -81,7 +81,7 @@ public class JsonData
             "      \"gender\": \"Female\",\n" +
             "      \"dob\": \"30-Feb-1980\",\n" +
             "      \"age\": \"36Y\",\n" +
-            "      \"action\": \"Follow-up Visit\",\n" +
+            "      \"action\": \"Administer medication\",\n" +
             "      \"status\": \"submitted\",\n" +
             "      \"eta\": \"Set ETA2\"\n" +
             "    },\n" +
@@ -105,7 +105,7 @@ public class JsonData
             "      \"gender\": \"Male\",\n" +
             "      \"dob\": \"30-Jan-1960\",\n" +
             "      \"age\": \"56Y\",\n" +
-            "      \"action\": \"Follow-up Visit\",\n" +
+            "      \"action\": \"Initial Assessment\",\n" +
             "      \"status\": \"new\",\n" +
             "      \"eta\": \"Set ETA3\"\n" +
             "    }\n" +

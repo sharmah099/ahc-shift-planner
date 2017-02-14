@@ -40,13 +40,15 @@
             android:text="Past Incomplete Visits"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <ImageView
             android:id="@+id/iv_expand_col"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_collapse"/>
+            android:src="@mipmap/ic_collapse"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
