@@ -109,14 +109,13 @@
                 android:padding="@dimen/expandableListDividerHeight"
                 android:paddingRight="@dimen/padding_eextra_wide"
                 android:src="@mipmap/ic_left"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:stateListAnimator="@animator/raised_button" />
 
             <TextView
                 android:id="@+id/tv_start_time"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/padding_narrow"
-                android:paddingEnd="@dimen/padding"
                 android:padding="@dimen/expandableListDividerHeight"
                 android:gravity="center"
                 style="@style/Text.XLarge"/>
@@ -128,6 +127,7 @@
                 android:layout_marginBottom="3dp"
                 android:padding="@dimen/expandableListDividerHeight"
                 android:src="@mipmap/ic_right"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:stateListAnimator="@animator/raised_button" />
         </LinearLayout>
 
