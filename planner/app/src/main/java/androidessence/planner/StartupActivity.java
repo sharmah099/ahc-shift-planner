@@ -216,7 +216,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
 
                 mainApp.setFinalTime(finalTime);
 
-                visitTime.setText("Visits shown will be from now ("+finalTime+") to " +finalTime);
+                visitTime.setText("Visits shown will be from now ("+currentTime+") to " +finalTime);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -238,7 +238,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
 
                 mainApp.setFinalTime(finalTime);
 
-                visitTime.setText("Visits shown will be from now ("+finalTime+") to " + finalTime);
+                visitTime.setText("Visits shown will be from now ("+currentTime+") to " + finalTime);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
