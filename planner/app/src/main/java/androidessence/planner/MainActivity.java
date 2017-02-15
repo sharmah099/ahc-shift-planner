@@ -379,11 +379,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     }
 
     @Override
-    public void onItemClicked()
+    public void onItemClicked(View view)
     {
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        /*android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
-        jobOverviewFragment.show(fm ,"");
+        jobOverviewFragment.show(fm, "");
+*/
+        Intent intent = new Intent(this, JobOverviewActivity.class);
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view , getString(R.string.transition_dialog));
+        startActivityForResult(intent, ADD_TO_SHIFT, options.toBundle());
     }
 
     public  void expand(final View v) {

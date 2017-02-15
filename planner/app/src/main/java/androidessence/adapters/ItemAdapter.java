@@ -43,7 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                plannerItemClickListener.onItemClicked();
+                plannerItemClickListener.onItemClicked(view);
             }
         });
         return new ViewHolder(itemView);
