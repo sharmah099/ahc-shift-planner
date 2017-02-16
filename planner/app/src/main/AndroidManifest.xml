@@ -9,19 +9,15 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Nomad">
         <activity
-            android:name="androidessence.planner.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name="androidessence.planner.CalenerActivity"
+            android:name=".CalenerActivity"
             android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
-
         <activity
-            android:name="androidessence.planner.ScrollerActivity"
+            android:name=".ScrollerActivity"
             android:theme="@style/Theme.Nomad.NoTitleNoActionBar" />
-
         <activity
             android:name=".EditSessionLengthActivity"
             android:theme="@style/AppTheme.Dialog" />
@@ -31,33 +27,30 @@
         <activity
             android:name=".AddToShiftDialogActivity"
             android:theme="@style/AppTheme.Dialog" />
-
         <activity
             android:name=".JobOverviewActivity"
             android:theme="@style/AppTheme.Dialog" />
-
         <activity
             android:name=".FinalTimeActivity"
             android:theme="@style/AppTheme.Dialog" />
-
         <activity
             android:name=".HourActivity"
             android:theme="@style/AppTheme.Dialog" />
-
-        <activity android:name=".PeriodActivity"
-        android:theme="@style/AppTheme.Dialog" />
-
-        <activity android:name=".ShiftscreenActivity"
-            android:theme="@style/AppTheme.Dialog"/>
-
-
-        <activity android:name="androidessence.planner.StartupActivity">
+        <activity
+            android:name=".PeriodActivity"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".ShiftscreenActivity"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity android:name=".StartupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TimePickerActivity"
+            android:theme="@style/AppTheme.Dialog"></activity>
     </application>
 
 </manifest>
