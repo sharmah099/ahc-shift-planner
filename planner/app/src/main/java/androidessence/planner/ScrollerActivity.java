@@ -126,7 +126,8 @@ public class ScrollerActivity extends Activity {
                                 } else {
                                      timeSlot = ((value) * 15);
                                 }
-                                t.setText(getTime(timeSlot));
+                                time = getTime(timeSlot);
+                                t.setText(time);
 
                             }
                         }

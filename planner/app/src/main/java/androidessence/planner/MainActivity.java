@@ -76,13 +76,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     public static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
 
-  //  int pos = 0;
+    //  int pos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainApp = (MainApp)getApplicationContext();
 
         //set the toolbar as actionbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -162,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     protected void onResume()
     {
         super.onResume();
-        mainApp = (MainApp)getApplicationContext();
+
         updateTimeForETA2();
         itemAdapter.refresh(shiftList);
         itemAdapter.notifyDataSetChanged();
@@ -171,39 +173,20 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
     @Override
     public void onStartAct(String time, String name,  int pos, boolean fromIncomplete, String etaType,View view) {
-       // this.pos = pos;
+        // this.pos = pos;
         mainApp.setPos(pos);
         ArrayList<ShiftItems> listItem = (ArrayList<ShiftItems>) itemAdapter.getAllItems();
 
         if (etaType.equalsIgnoreCase("Set ETA1")) {
             Intent intent = new Intent(this, ScrollerActivity.class);
-            //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
-            //intent.putExtra("TIME", time);
-            //intent.putExtra("NAME", name);
-            //intent.putExtra("FROM_INCOMP", fromIncomplete);
             startActivityForResult(intent, 1001);
         }
         else if (etaType.equalsIgnoreCase("Set ETA2")) {
-            Intent intent = new Intent(MainActivity.this, PeriodActivity.class);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, view, getString(R.string.transition_dialog));
-            startActivityForResult(intent, 1000 , options.toBundle());
-
-            //intent.putParcelableArrayListExtra("ALL_TIME", listItem);
-            //intent.putExtra("TIME", time);
-            //intent.putExtra("NAME", name);
-            //intent.putExtra("FROM_INCOMP", fromIncomplete);
-            //startActivityForResult(intent, 1000);
-        }
-        else if(etaType.equalsIgnoreCase("Set ETA3"))
-        {
-            FragmentManager fm = getFragmentManager();
-            GridViewDialog dialogFragment = new GridViewDialog();
-            dialogFragment.show(fm, "gridViewDialog");
-        }
-        else if(etaType.equalsIgnoreCase("Set ETA5")){
             Intent in = new Intent(this,ShiftscreenActivity.class);
             startActivityForResult(in,1002);
         }
+        else if(etaType.equalsIgnoreCase("Set ETA3"))
+        {}
     }
 
     @Override
@@ -270,21 +253,26 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 }
             }
             else if (requestCode == 1001) {
-
                 String time = data.getStringExtra("SCROLLER_TIME");
-                //ShiftItems items = shiftList.get(mainApp.getPos());
-                ShiftItems items = shiftList.get(shiftList.size() -1);
+                ShiftItems items = shiftList.get(mainApp.getPos());
                 items.setTime(time);
 
-                //shiftList.remove(mainApp.getPos());
-                shiftList.remove(shiftList.size() -1);
+                shiftList.remove(mainApp.getPos());
                 shiftList.add(items);
                 itemAdapter.refresh(shiftList);
                 itemAdapter.refresh();
                 itemAdapter.notifyDataSetChanged();
             }
             else if (requestCode == 1002) {
+                String time = data.getStringExtra("SCROLLER_TIME");
+                ShiftItems items = shiftList.get(shiftList.size() -1);
+                items.setTime(time);
 
+                shiftList.remove(shiftList.size() -1);
+                shiftList.add(items);
+                itemAdapter.refresh(shiftList);
+                itemAdapter.refresh();
+                itemAdapter.notifyDataSetChanged();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -413,7 +401,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                         ? RecyclerView.LayoutParams.WRAP_CONTENT
                         : (int) (targtetHeight * interpolatedTime);
                 v.requestLayout();
-        }
+            }
 
             @Override
             public boolean willChangeBounds() {
