@@ -63,7 +63,8 @@
             android:textColor="@color/text_secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13:30" />
+            android:layout_marginLeft="5dp"
+            android:text="(13:30)" />
     </LinearLayout>
 
     <LinearLayout
@@ -140,17 +141,6 @@
         android:text="hours"
         style="@style/Text.Medium"
         android:textColor="@color/text_secondary"/>
-
-    <TextView
-        android:id="@+id/tv_error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        style="@style/Text.Medium"
-        android:textColor="@color/red_warnings"
-        android:text="Hours limit between 0-48 hrs" />
 
     <Button
         android:id="@+id/btn_start_new_shift"

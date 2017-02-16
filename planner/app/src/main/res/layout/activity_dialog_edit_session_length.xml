@@ -82,7 +82,7 @@
                 style="@style/Text.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="18dp"
                 android:textColor="@color/text_secondary" />
         </LinearLayout>
 
@@ -133,17 +133,6 @@
             android:gravity="center"
             android:text="hours"
             android:textColor="@color/text_secondary" />
-
-        <TextView
-            android:id="@+id/tv_error"
-            style="@style/Text.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Hours limit between 0-48 hrs"
-            android:textColor="@color/red_warnings"
-            android:visibility="gone" />
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"

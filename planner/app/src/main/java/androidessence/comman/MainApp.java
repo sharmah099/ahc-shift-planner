@@ -18,6 +18,8 @@ public class MainApp extends Application
 
     String finalTime;
 
+    int currentHour;
+
     public int getPos()
     {
         return pos;
@@ -62,5 +64,16 @@ public class MainApp extends Application
     public void setFinalTime(String finalTime)
     {
         this.finalTime = finalTime;
+    }
+
+
+    public int getCurrentHour()
+    {
+        return currentHour;
+    }
+
+    public void setCurrentHour(int currentHour)
+    {
+        this.currentHour = currentHour;
     }
 }

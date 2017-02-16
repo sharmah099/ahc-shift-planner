@@ -59,6 +59,8 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
         cal.set(Calendar.HOUR,8);
         count =  cal.get(Calendar.HOUR);
         startTime.setText(""+count);
+        mainApp = (MainApp)getApplicationContext();
+        mainApp.setCurrentHour(count);
 
         // set click for leftIcon
         left_icon.setOnClickListener(this);
@@ -127,7 +129,16 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
     {
         count = count + 1;
         startTime.setText("" + count);
-        display(count);
+        if (count == 48) {
+            right_icon.setEnabled(false);
+            right_icon.setImageResource(R.mipmap.ic_right_disabled);
+            display(count);
+        }
+        else {
+            left_icon.setImageResource(R.mipmap.ic_left);
+            left_icon.setEnabled(true);
+            display(count);
+        }
     }
 
     /**
@@ -137,7 +148,15 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
     {
         count = count - 1;
         startTime.setText(""+count);
-        display(count);
+        if (count == 0) {
+            left_icon.setEnabled(false);
+            left_icon.setImageResource(R.mipmap.ic_left_disabled);
+            display(count);
+        } else {
+            right_icon.setEnabled(true);
+            right_icon.setImageResource(R.mipmap.ic_right);
+            display(count);
+        }
     }
 
     /**
@@ -145,6 +164,21 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
      */
     private void display(int count)
     {
+        if(count == 48 ){
+            right_icon.setEnabled(false);
+            right_icon.setImageResource(R.mipmap.ic_right_disabled);
+        } else {
+            right_icon.setEnabled(true);
+            right_icon.setImageResource(R.mipmap.ic_right);
+        }
+
+        if(count == 0 ) {
+            left_icon.setEnabled(false);
+            left_icon.setImageResource(R.mipmap.ic_left_disabled);
+        } else {
+            left_icon.setEnabled(true);
+            left_icon.setImageResource(R.mipmap.ic_left);
+        }
         String newTime = TIME_FORMAT.format(new Date());
 
         String[] parts = newTime.split(":");
@@ -156,6 +190,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
             String currentTime = hh.concat(":00");
             mainApp = (MainApp)getApplicationContext();
             mainApp.setCurrentTime(currentTime);
+            mainApp.setCurrentHour(count);
 
             int val = Integer.valueOf(hh);
             val  = val + count;
@@ -180,6 +215,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
             String currentTime = hh.concat(":15");
             mainApp = (MainApp)getApplicationContext();
             mainApp.setCurrentTime(currentTime);
+            mainApp.setCurrentHour(count);
             int val = Integer.valueOf(hh);
             val  = val + count;
             String s = String.valueOf(val);
@@ -202,6 +238,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
             String currentTime =  hh.concat(":30");
             mainApp = (MainApp)getApplicationContext();
             mainApp.setCurrentTime(currentTime);
+            mainApp.setCurrentHour(count);
             int val = Integer.valueOf(hh);
             val  = val + count;
             String s = String.valueOf(val);
@@ -224,6 +261,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
             String currentTime = hh.concat(":45");
             mainApp = (MainApp)getApplicationContext();
             mainApp.setCurrentTime(currentTime);
+            mainApp.setCurrentHour(count);
             int val = Integer.valueOf(hh);
             val  = val + count;
             String s = String.valueOf(val);
@@ -243,5 +281,19 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mainApp = (MainApp)mainApp.getApplicationContext();
+        if(mainApp.getCurrentHour() == 8){
+             count = 8;
+        } else {
+            count = mainApp.getCurrentHour();
+        }
+        startTime.setText(" "+ count);
+        display(count);
     }
 }
