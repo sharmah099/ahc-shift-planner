@@ -186,7 +186,10 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
             startActivityForResult(in,1002);
         }
         else if(etaType.equalsIgnoreCase("Set ETA3"))
-        {}
+        {
+            Intent in = new Intent(this,TimePickerActivity.class);
+            startActivityForResult(in,1003);
+        }
     }
 
     @Override
@@ -454,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         //itemAdapter.notifyDataSetChanged();
 
         Intent intent = new Intent(this, ScrollerActivity.class);
-        startActivityForResult(intent, 1001);
+        startActivityForResult(intent, 1002);
     }
 
     private void updateTimeForETA2() {
