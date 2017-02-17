@@ -351,13 +351,15 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
 
 
     @Override
-    public void onItemClicked(View view)
+    public void onItemClicked(View view, ArrayList<String> patientInfoList)
     {
         /*android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         JoboverviewFragment jobOverviewFragment = new JoboverviewFragment();
         jobOverviewFragment.show(fm, "");
 */
+
         Intent intent = new Intent(this, JobOverviewActivity.class);
+        intent.putExtra("PatientInfoList", patientInfoList);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, view , getString(R.string.transition_dialog));
         startActivityForResult(intent, ADD_TO_SHIFT, options.toBundle());
     }

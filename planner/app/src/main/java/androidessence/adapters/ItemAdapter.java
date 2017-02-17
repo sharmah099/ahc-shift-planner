@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -24,6 +25,7 @@ import androidessence.pojo.ShiftItems;
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private Context mContext;
     private List<ShiftItems> items;
+    int currentPosition = -1;
 
     StartActivityForResultListner listnerAct;
 
@@ -39,14 +41,22 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = (LayoutInflater.from(mContext).inflate(R.layout.list_item_movie, parent, false));
+        final View itemView = (LayoutInflater.from(mContext).inflate(R.layout.list_item_movie, parent, false));
+        final ViewHolder viewHolder = new ViewHolder(itemView);
+
+
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                plannerItemClickListener.onItemClicked(view);
+                ArrayList<String> patientInfoList = new ArrayList<String>();
+                patientInfoList.add(viewHolder.clientName.getText().toString());
+                patientInfoList.add(viewHolder.lastName.getText().toString());
+                patientInfoList.add(viewHolder.dob.getText().toString());
+                plannerItemClickListener.onItemClicked(view, patientInfoList);
             }
         });
-        return new ViewHolder(itemView);
+        
+        return viewHolder;
     }
 
     @Override

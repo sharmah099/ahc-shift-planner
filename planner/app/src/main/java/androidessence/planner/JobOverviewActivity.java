@@ -15,6 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import androidessence.comman.JobItemPriorityCustomView;
 import androidessence.comman.MorphDialogToView;
 import androidessence.comman.MorphViewToDialog;
@@ -40,6 +47,17 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         tvPhoneNumber = (TextView) findViewById(R.id.tv_phone_number);
         priorityLayout = (LinearLayout) findViewById(R.id.ll_job_priority);
 
+        ArrayList<String> patientInfoList = getIntent().getExtras().getStringArrayList("PatientInfoList");
+        TextView tvFirstName = (TextView) findViewById(R.id.tv_firstname) ;
+        TextView tvLastName = (TextView) findViewById(R.id.tv_lastname);
+        TextView tvDob = (TextView) findViewById(R.id.tv_dob);
+
+        if (patientInfoList != null) {
+            tvFirstName.setText(patientInfoList.get(0));
+            tvLastName.setText(patientInfoList.get(1));
+            tvDob.setText(patientInfoList.get(2));
+        }
+
         callImageView = (ImageView) findViewById(R.id.img_call);
         callImageView.setOnClickListener(this);
         msgImageView = (ImageView) findViewById(R.id.img_msg);
@@ -54,6 +72,21 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         priorityLayout.removeAllViews();
         priorityLayout.addView(priorityLabel);
 
+    }
+
+    private int calculateAge(String dob)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse(dob);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        long timeDiff = new Date().getTime() - date.getTime();
+        Date age = new Date(timeDiff);
+        return age.getYear();
     }
 
     public void setupSharedEelementTransitions()
