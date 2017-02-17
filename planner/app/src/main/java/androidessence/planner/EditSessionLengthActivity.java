@@ -273,7 +273,7 @@ public class EditSessionLengthActivity extends AppCompatActivity
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(time1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                tvStartTime.setText(currentTime + " " + "today");
+                tvStartTime.setText(currentTime + " " + "Today");
                 tvFinishTime.setText(dateFormat.format(cal.getTime()) + " " + today);
                 app.setFinalTime(dateFormat.format(cal.getTime()));
                 app.setCurrentHour(count);
@@ -294,7 +294,7 @@ public class EditSessionLengthActivity extends AppCompatActivity
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(time1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                tvStartTime.setText(currentTime + " " + "today");
+                tvStartTime.setText(currentTime + " " + "Today");
                 tvFinishTime.setText(dateFormat.format(cal.getTime()) + " " + today);
                 app.setFinalTime(dateFormat.format(cal.getTime()));
                 app.setCurrentHour(count);
@@ -315,7 +315,7 @@ public class EditSessionLengthActivity extends AppCompatActivity
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(time1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                tvStartTime.setText(currentTime + " " + "today");
+                tvStartTime.setText(currentTime + " " + "Today");
                 tvFinishTime.setText(dateFormat.format(cal.getTime()) + " " + today);
                 app.setFinalTime(dateFormat.format(cal.getTime()));
                 app.setCurrentHour(count);
@@ -335,7 +335,7 @@ public class EditSessionLengthActivity extends AppCompatActivity
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(time1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                tvStartTime.setText(currentTime + " " + "today");
+                tvStartTime.setText(currentTime + " " + "Today");
                 tvFinishTime.setText(dateFormat.format(cal.getTime()) + " " + today);
                 app.setFinalTime(dateFormat.format(cal.getTime()));
                 app.setCurrentHour(count);
