@@ -47,7 +47,7 @@
             android:id="@+id/iv_expand_col"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_collapse"
+            android:src="@mipmap/ic_expand"
             android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
 

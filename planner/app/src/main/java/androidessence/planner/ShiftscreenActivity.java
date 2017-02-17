@@ -1,6 +1,7 @@
 package androidessence.planner;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,12 +28,15 @@ public class ShiftscreenActivity extends Activity {
     SimpleDateFormat sdf;
     Calendar cal;
     String starttime, starttimesecond, Starttimesecond1;
-    private ShiftJobAdapter shiftjobadapterrange, shiftjobadapterhour, shiftjobadapterminute;
+    private ShiftJobAdapter shiftjobadapterrange;
+    private ShiftJobAdapter shiftjobadapterhour;
+    private ShiftJobAdapter shiftjobadapterminute;
     private List<ShiftJobsTime> shiftjobrange = new ArrayList<>();
     private List<ShiftJobsTime> shiftjobhour = new ArrayList<>();
     private List<ShiftJobsTime> shiftjobtimeminute = new ArrayList<>();
     String selection = "";
     int positionHour = -1;
+    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +50,22 @@ public class ShiftscreenActivity extends Activity {
         sdf = new SimpleDateFormat("HH:mm");
         cal = Calendar.getInstance();
 
+        list1.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        list2.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        list3.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
         shiftjobadapterrange = new ShiftJobAdapter(ShiftscreenActivity.this, shiftjobrange);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         list1.setLayoutManager(mLayoutManager);
         list1.setItemAnimator(new DefaultItemAnimator());
-
-        list1.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
         list1.setAdapter(shiftjobadapterrange);
+        shiftjobadapterrange.notifyDataSetChanged();
 
         preparejobdata();
 
         defaultselectionmethod();
 
-      final  int selectedposition = 0;
+        final int selectedposition = 0;
         list1.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), new RecyclerTouchListener.ClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -152,18 +158,21 @@ public class ShiftscreenActivity extends Activity {
             shiftjobhour.clear();
         }
 
+        list2adaptermethod(shiftjobhour, sttime, starttime1, starttime2, starttime3);
+    }
+
+    public void list2adaptermethod(final List<ShiftJobsTime> shiftjobhour, String sttime, String starttime1, String starttime2, String starttime3) {
         shiftjobadapterhour = new ShiftJobAdapter(ShiftscreenActivity.this, shiftjobhour);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         list2.setLayoutManager(mLayoutManager);
         list2.setItemAnimator(new DefaultItemAnimator());
 
-        list2.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
         list2.setAdapter(shiftjobadapterhour);
+        shiftjobadapterhour.notifyDataSetChanged();
 
         preparetimedata(sttime, starttime1, starttime2, starttime3);
 
-        minutecalculation("");
+        minutecalculation();
 
         list2.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), new RecyclerTouchListener.ClickListener() {
             @Override
@@ -174,26 +183,11 @@ public class ShiftscreenActivity extends Activity {
                 int perioditematposition = list2.getChildLayoutPosition(view);
                 ShiftJobsTime minute = shiftjobhour.get(position);
                 String selection = minute.getTime();
-
-                if (selection.equalsIgnoreCase("09:00")) {
-
-                    minutecalculation(sttime);
-                } else if (selection.equalsIgnoreCase("10:00")) {
-
-                    minutecalculation(starttime1);
-                } else if (selection.equalsIgnoreCase("11:00")) {
-
-                    minutecalculation(starttime2);
-                } else if (selection.equalsIgnoreCase("12:00")) {
-                    minutecalculation(starttime3);
-                }
-
-
+                minutecalculation();
             }
         }));
-
-
     }
+
 
     public void second13function() {
         cal.add(Calendar.HOUR_OF_DAY, 1);
@@ -222,42 +216,7 @@ public class ShiftscreenActivity extends Activity {
         if (shiftjobhour != null) {
             shiftjobhour.clear();
         }
-
-        shiftjobadapterhour = new ShiftJobAdapter(ShiftscreenActivity.this, shiftjobhour);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        list2.setLayoutManager(mLayoutManager);
-        list2.setItemAnimator(new DefaultItemAnimator());
-
-        list2.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
-        list2.setAdapter(shiftjobadapterhour);
-
-        preparetimedata(sttime, starttime1, starttime2, starttime3);
-
-        list2.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-                int perioditematposition = list2.getChildLayoutPosition(view);
-                ShiftJobsTime minute = shiftjobhour.get(position);
-                String selection = minute.getTime();
-
-                if (selection.equalsIgnoreCase("13:00")) {
-
-                    minutecalculation(sttime);
-                } else if (selection.equalsIgnoreCase("14:00")) {
-
-                    minutecalculation(starttime1);
-                } else if (selection.equalsIgnoreCase("15:00")) {
-
-                    minutecalculation(starttime2);
-                } else if (selection.equalsIgnoreCase("16:00")) {
-                    minutecalculation(starttime3);
-                }
-
-
-            }
-        }));
+        list2adaptermethod(shiftjobhour, sttime, starttime1, starttime2, starttime3);
 
 
     }
@@ -290,41 +249,7 @@ public class ShiftscreenActivity extends Activity {
         if (shiftjobhour != null) {
             shiftjobhour.clear();
         }
-        shiftjobadapterhour = new ShiftJobAdapter(ShiftscreenActivity.this, shiftjobhour);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        list2.setLayoutManager(mLayoutManager);
-        list2.setItemAnimator(new DefaultItemAnimator());
-
-        list2.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
-        list2.setAdapter(shiftjobadapterhour);
-
-        preparetimedata(sttime, starttime1, starttime2, starttime3);
-
-        list2.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-                int perioditematposition = list2.getChildLayoutPosition(view);
-                ShiftJobsTime minute = shiftjobhour.get(position);
-                String selection = minute.getTime();
-
-                if (selection.equalsIgnoreCase("17:00")) {
-
-                    minutecalculation(sttime);
-                } else if (selection.equalsIgnoreCase("18:00")) {
-
-                    minutecalculation(starttime1);
-                } else if (selection.equalsIgnoreCase("19:00")) {
-
-                    minutecalculation(starttime2);
-                } else if (selection.equalsIgnoreCase("20:00")) {
-                    minutecalculation(starttime3);
-                }
-
-
-            }
-        }));
+        list2adaptermethod(shiftjobhour, sttime, starttime1, starttime2, starttime3);
     }
 
 
@@ -347,44 +272,52 @@ public class ShiftscreenActivity extends Activity {
     }
 
 
-    public void minutecalculation(String time) {
+    public void minutecalculation() {
 
         if (shiftjobtimeminute.size() > 0) {
             shiftjobtimeminute.clear();
         }
-        final String startminute;
-        startminute = time;
 
-        String[] arr = startminute.split(":");
-        final String newdate = arr[0];
-
-
+        list3 = (RecyclerView) findViewById(R.id.list3);
         shiftjobadapterminute = new ShiftJobAdapter(ShiftscreenActivity.this, shiftjobtimeminute);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
         list3.setLayoutManager(mLayoutManager);
         list3.setItemAnimator(new DefaultItemAnimator());
 
-        list3.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
         list3.setAdapter(shiftjobadapterminute);
+        shiftjobadapterminute.notifyDataSetChanged();
 
         prepareminutetime();
 
-        if(positionHour!= -1 && shiftjobhour.get(positionHour)!= null) {
+
+        if (positionHour != -1 && shiftjobhour.get(positionHour) != null) {
+
             list3.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), new RecyclerTouchListener.ClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
+
                     ShiftJobsTime jobsTime = shiftjobhour.get(positionHour);
+
                     ShiftJobsTime minute = shiftjobtimeminute.get(position);
                     selection = minute.getTime();
+
                     String hour = jobsTime.getTime();
                     String[] arr = hour.split(":");
                     final String hourtime = arr[0];
+                    String starttime = hourtime + ":" + selection;
 
+                    Intent in = new Intent(ShiftscreenActivity.this, MainActivity.class);
+                    in.putExtra("starttime1", starttime);
+                    startActivity(in);
                     finish();
                 }
             }));
+
+
         }
+
+
     }
 
     public void prepareminutetime() {
@@ -407,3 +340,4 @@ public class ShiftscreenActivity extends Activity {
 
 
 }
+

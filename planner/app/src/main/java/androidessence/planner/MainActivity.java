@@ -270,6 +270,22 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 itemAdapter.refresh();
                 itemAdapter.notifyDataSetChanged();
             }
+            else if (requestCode == 1003) {
+
+                String hr = data.getStringExtra("HOURS");
+                String mins = data.getStringExtra("MINUTS");
+                String finalString = hr+":"+mins;
+
+                ShiftItems items = shiftList.get(mainApp.getPos());
+                items.setTime(finalString);
+
+                shiftList.remove(mainApp.getPos());
+                shiftList.add(items);
+                itemAdapter.refresh(shiftList);
+                itemAdapter.refresh();
+                itemAdapter.notifyDataSetChanged();
+
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -288,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
     {
         if (inCompleteItems != null && !inCompleteItems.isEmpty()) {
             if (incompleteRv.getVisibility() == View.GONE) {
-                ivExpand.setImageResource(R.mipmap.ic_expand);
+                ivExpand.setImageResource(R.mipmap.ic_collapse);
                 //tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_expand, 0);
                 incompleteRv.setVisibility(View.VISIBLE);
                 namesAdapter.refresh(inCompleteItems);
@@ -296,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
                 expand(incompleteRv);
                 helper.attachToRecyclerView(null);
             } else {
-                ivExpand.setImageResource(R.mipmap.ic_collapse);
+                ivExpand.setImageResource(R.mipmap.ic_expand);
                 //tvExpand.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_collapse, 0);
                 //incompleteRv.setVisibility(View.GONE);
                 //setHeightInCollapse();
