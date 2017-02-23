@@ -66,11 +66,11 @@
                     android:id="@+id/add_time"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:gravity="center|end"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|end"
                     android:text="Set ETA"
                     android:textColor="@color/primary_blue"
-                    style="@style/Text"/>
+                    style="@style/Text.Medium"/>
             </LinearLayout>
 
             <TextView
