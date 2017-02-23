@@ -1,9 +1,13 @@
 package androidessence.planner;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.ArcMotion;
+import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,24 +31,60 @@ import androidessence.comman.JobItemPriorityCustomView;
 import androidessence.comman.MorphDialogToView;
 import androidessence.comman.MorphViewToDialog;
 
-public class JobOverviewActivity extends AppCompatActivity implements View.OnClickListener {
+public class JobOverviewActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener  {
     private ViewGroup container;
     LinearLayout priorityLayout;
     private float dX;
     private float dY;
+    LinearLayout frame;
+    RelativeLayout outerframe;
     ImageView callImageView;
     ImageView msgImageView;
     ImageView mapImageView;
     ImageView navigationImageView;
     TextView tvPhoneNumber;
+    int windowwidth;
+    int windowheight;
+    private int previousFingerPosition = 0;
+    private int previousfingerxposition = 0;
+    private int baseLayoutPosition = 0;
+    private int defaultViewHeight;
+    private int defaultViewWidth;
+    private int baseLayoutXPosition = 0;
+    private boolean isClosing = false;
+    private boolean isScrollingUp = false;
+    private boolean isScrollingDown = false;
+    private boolean isScrollingLeft = false;
+    private boolean isScrollingRight = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_overview_fragment);
         container = (ViewGroup) findViewById(R.id.container);
+        frame = (LinearLayout) findViewById(R.id.container);
+        outerframe = (RelativeLayout) findViewById(R.id.frame);
+        frame.setOnTouchListener(this);
+
+        frame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        outerframe.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                finish();
+                return false;
+            }
+        });
         setupSharedEelementTransitions();
-        final GestureDetector gestureDetector = new GestureDetector(this, new JobOverviewActivity.JoboverviewGestureDetector());
+        windowwidth = getWindowManager().getDefaultDisplay().getWidth();
+        windowheight = getWindowManager().getDefaultDisplay().getHeight();
+
+       // final GestureDetector gestureDetector = new GestureDetector(this, new JobOverviewActivity.JoboverviewGestureDetector());
         tvPhoneNumber = (TextView) findViewById(R.id.tv_phone_number);
         priorityLayout = (LinearLayout) findViewById(R.id.ll_job_priority);
 
@@ -72,6 +113,286 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         priorityLayout.removeAllViews();
         priorityLayout.addView(priorityLabel);
 
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        // Get finger position on screen
+        final int Y = (int) event.getRawY();
+        final int X = (int) event.getRawX();
+
+        // Switch on motion event type
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+
+            case MotionEvent.ACTION_DOWN:
+                // save default frame height and width
+                defaultViewHeight = frame.getHeight();
+                defaultViewWidth = frame.getWidth();
+
+                // Init finger and view position
+                previousFingerPosition = Y;
+                previousfingerxposition = X;
+                baseLayoutPosition = (int) frame.getY();
+                baseLayoutXPosition = (int) frame.getX();
+                break;
+
+            case MotionEvent.ACTION_UP:
+                // If user was doing a scroll up
+                if (isScrollingUp) {
+                    // Reset frame position
+                    frame.setY(0);
+                    // We are not in scrolling up mode anymore
+                    isScrollingUp = false;
+                }
+
+                // If user was doing a scroll down
+                if (isScrollingDown) {
+                    // Reset frame position
+                    frame.setY(0);
+                    // Reset frame size
+                    frame.getLayoutParams().height = defaultViewHeight;
+                    frame.requestLayout();
+                    // We are not in scrolling down mode anymore
+                    isScrollingDown = false;
+                }
+
+                if (isScrollingLeft) {
+                    frame.setX(0);
+                    isScrollingLeft = false;
+                }
+
+                if (isScrollingRight) {
+                    frame.setX(0);
+                    frame.getLayoutParams().width = defaultViewWidth;
+                    frame.requestLayout();
+                    isScrollingRight = false;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (!isClosing) {
+                    int currentYPosition = (int) frame.getY();
+                    int currentXposition = (int) frame.getX();
+
+                    // If we scroll up
+                    if (previousFingerPosition > Y) {
+                        // First time android rise an event for "up" move
+                        if (!isScrollingUp) {
+                            isScrollingUp = true;
+                        }
+
+                        // Has user scroll down before -> view is smaller than it's default size -> resize it instead of change it position
+                        if (frame.getHeight() < defaultViewHeight) {
+                            frame.getLayoutParams().height = frame.getHeight() - (Y - previousFingerPosition);
+                            frame.requestLayout();
+                        } else {
+                            // Has user scroll enough to "auto close" popup ?
+                            if ((baseLayoutPosition - currentYPosition) > defaultViewHeight / 4) {
+                                closeUpAndDismissDialog(currentYPosition);
+                                return true;
+                            }
+
+                            //
+                        }
+                        frame.setY(frame.getY() + (Y - previousFingerPosition));
+
+                    }
+                    // If we scroll down
+                    else {
+
+                        // First time android rise an event for "down" move
+                        if (!isScrollingDown) {
+                            isScrollingDown = true;
+                        }
+
+                        // Has user scroll enough to "auto close" popup ?
+                        if (Math.abs(baseLayoutPosition - currentYPosition) > defaultViewHeight / 2) {
+                            closeDownAndDismissDialog(currentYPosition);
+                            return true;
+                        }
+
+                        // Change frame size and position (must change position because view anchor is top left corner)
+                        frame.setY(frame.getY() + (Y - previousFingerPosition));
+                        // frame.getLayoutParams().height = frame.getHeight() - (Y - previousFingerPosition);
+                        //  frame.requestLayout();
+                    }
+
+
+                    if (previousfingerxposition > X) {
+                        // First time android rise an event for "left" move
+                        if (!isScrollingLeft) {
+                            isScrollingLeft = true;
+                        }
+
+                        // Has user scroll down before -> view is smaller than it's default size -> resize it instead of change it position
+                        if (frame.getWidth() < defaultViewWidth) {
+                            frame.getLayoutParams().width = frame.getWidth() - (X - previousfingerxposition);
+                            frame.requestLayout();
+                        } else {
+                            // Has user scroll enough to "auto close" popup ?
+                            if ((baseLayoutXPosition - currentXposition) > defaultViewWidth / 4) {
+                                closeUpAndDismissDialogx(currentXposition);
+                                return true;
+                            }
+                        }
+                        frame.setX(frame.getX() + (X - previousfingerxposition));
+                    } else {
+                        // First time android rise an event for "right" move
+                        if (!isScrollingRight) {
+                            isScrollingRight = true;
+                        }
+
+                        // Has user scroll enough to "auto close" popup ?
+                        if (Math.abs(baseLayoutXPosition + currentXposition) > defaultViewWidth / 2) {
+                            closeDownAndDismissDialogx(currentXposition);
+                            return true;
+                        }
+                        // Change frame size and position (must change position because view anchor is top left corner)
+
+                        frame.setX(frame.getX() + (X - previousfingerxposition));
+
+                        //  frame.getLayoutParams().width = frame.getWidth() - (X - previousfingerxposition);
+                        //frame.requestLayout();
+                    }
+
+                    // Update position
+                    previousFingerPosition = Y;
+                    previousfingerxposition = X;
+                }
+                break;
+        }
+        return false;
+    }
+
+
+    public void closeUpAndDismissDialog(int currentPosition) {
+        isClosing = true;
+        ObjectAnimator positionAnimator = ObjectAnimator.ofFloat(frame, "y", currentPosition, -frame.getHeight());
+        positionAnimator.setDuration(200);
+        positionAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                finish();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+
+        positionAnimator.start();
+    }
+
+    public void closeDownAndDismissDialog(int currentPosition) {
+        isClosing = true;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screenHeight = size.y;
+        ObjectAnimator positionAnimator = ObjectAnimator.ofFloat(frame, "y", currentPosition, screenHeight + frame.getHeight());
+        positionAnimator.setDuration(200);
+        positionAnimator.addListener(new Animator.AnimatorListener() {
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                finish();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+
+        });
+        positionAnimator.start();
+    }
+
+
+    public void closeUpAndDismissDialogx(int currentPosition) {
+        isClosing = true;
+        ObjectAnimator positionAnimator = ObjectAnimator.ofFloat(frame, "x", currentPosition, -frame.getWidth());
+        positionAnimator.setDuration(200);
+        positionAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                finish();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+
+        positionAnimator.start();
+
+    }
+
+    public void closeDownAndDismissDialogx(int currentPosition) {
+        isClosing = true;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int screenWidth = size.x;
+        int screenHeight = size.y;
+        ObjectAnimator positionAnimator = ObjectAnimator.ofFloat(frame, "x", currentPosition, screenWidth + frame.getWidth());
+        positionAnimator.setDuration(200);
+        positionAnimator.addListener(new Animator.AnimatorListener() {
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                finish();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        positionAnimator.start();
     }
 
     private int calculateAge(String dob)
