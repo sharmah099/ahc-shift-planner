@@ -31,7 +31,7 @@ import androidessence.comman.JobItemPriorityCustomView;
 import androidessence.comman.MorphDialogToView;
 import androidessence.comman.MorphViewToDialog;
 
-public class JobOverviewActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener  {
+public class JobOverviewActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
     private ViewGroup container;
     LinearLayout priorityLayout;
     private float dX;
@@ -66,12 +66,12 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         outerframe = (RelativeLayout) findViewById(R.id.frame);
         frame.setOnTouchListener(this);
 
-        frame.setOnClickListener(new View.OnClickListener() {
+        /*frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
-        });
+        });*/
 
         outerframe.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -84,12 +84,12 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
         windowheight = getWindowManager().getDefaultDisplay().getHeight();
 
-       // final GestureDetector gestureDetector = new GestureDetector(this, new JobOverviewActivity.JoboverviewGestureDetector());
+        // final GestureDetector gestureDetector = new GestureDetector(this, new JobOverviewActivity.JoboverviewGestureDetector());
         tvPhoneNumber = (TextView) findViewById(R.id.tv_phone_number);
         priorityLayout = (LinearLayout) findViewById(R.id.ll_job_priority);
 
         ArrayList<String> patientInfoList = getIntent().getExtras().getStringArrayList("PatientInfoList");
-        TextView tvFirstName = (TextView) findViewById(R.id.tv_firstname) ;
+        TextView tvFirstName = (TextView) findViewById(R.id.tv_firstname);
         TextView tvLastName = (TextView) findViewById(R.id.tv_lastname);
         TextView tvDob = (TextView) findViewById(R.id.tv_dob);
 
@@ -105,7 +105,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         msgImageView.setOnClickListener(this);
         mapImageView = (ImageView) findViewById(R.id.img_map);
         mapImageView.setOnClickListener(this);
-        navigationImageView = (ImageView)findViewById(R.id.img_nav);
+        navigationImageView = (ImageView) findViewById(R.id.img_nav);
         navigationImageView.setOnClickListener(this);
 
         JobItemPriorityCustomView priorityLabel = new JobItemPriorityCustomView(getApplicationContext(),
@@ -138,8 +138,13 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case MotionEvent.ACTION_UP:
+
+                isScrollingDown = false;
+                isScrollingLeft = false;
+                isScrollingRight = false;
+                isScrollingUp = false;
                 // If user was doing a scroll up
-                if (isScrollingUp) {
+                /*if (isScrollingUp) {
                     // Reset frame position
                     frame.setY(0);
                     // We are not in scrolling up mode anymore
@@ -167,7 +172,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
                     frame.getLayoutParams().width = defaultViewWidth;
                     frame.requestLayout();
                     isScrollingRight = false;
-                }
+                }*/
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (!isClosing) {
@@ -395,8 +400,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         positionAnimator.start();
     }
 
-    private int calculateAge(String dob)
-    {
+    private int calculateAge(String dob) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         Date date = null;
         try {
@@ -410,8 +414,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         return age.getYear();
     }
 
-    public void setupSharedEelementTransitions()
-    {
+    public void setupSharedEelementTransitions() {
         ArcMotion arcMotion = new ArcMotion();
         arcMotion.setMinimumHorizontalAngle(50f);
         arcMotion.setMinimumVerticalAngle(50f);
@@ -436,8 +439,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_call:
                 onPhoneClicked();
@@ -454,23 +456,19 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void onPhoneClicked()
-    {
+    private void onPhoneClicked() {
         Toast.makeText(getApplicationContext(), "Call icon clicked", Toast.LENGTH_SHORT).show();
     }
 
-    private void onMessageClicked()
-    {
+    private void onMessageClicked() {
         Toast.makeText(getApplicationContext(), "Message icon clicked", Toast.LENGTH_SHORT).show();
     }
 
-    private void onMapClicked()
-    {
+    private void onMapClicked() {
         Toast.makeText(getApplicationContext(), "Map icon clicked", Toast.LENGTH_SHORT).show();
     }
 
-    private void onNavigationClicked()
-    {
+    private void onNavigationClicked() {
         Toast.makeText(getApplicationContext(), "Navigation icon clicked", Toast.LENGTH_SHORT).show();
     }
 

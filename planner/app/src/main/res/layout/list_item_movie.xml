@@ -4,81 +4,92 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="@dimen/padding_medium"
     android:paddingBottom="@dimen/padding_medium"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingRight="16dp"
+    android:paddingTop="@dimen/padding_medium">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.30"
             android:layout_height="wrap_content"
+            android:layout_weight="0.30"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Text.Medium.Bold" />
-
-            <TextView
-                android:paddingTop="@dimen/padding_extra_narrow"
-                android:id="@+id/tv_hour_minute"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0hr/30mi"
-                style="@style/Text"
-                android:textColor="@color/text_secondary"/>
-
-            <ImageView
-                android:paddingTop="@dimen/padding_extra_narrow"
-                android:id="@+id/iv_status"
+                style="@style/Text.Medium.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_hour_minute"
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extra_narrow"
+                android:text="0hr/30mi"
+                android:textColor="@color/text_secondary" />
+
+            <ImageView
+                android:id="@+id/iv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extra_narrow" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.70"
             android:layout_height="wrap_content"
+            android:layout_weight="0.70"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv_client_name"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text.Medium.Bold"
-                    android:textAllCaps="true"/>
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tv_client_name"
+                        style="@style/Text.Medium.Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/tv_client_name_last"
+                        style="@style/Text.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="shiva"
+                        android:textColor="@color/text_secondary" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:paddingRight="@dimen/padding_extra_narrow"
                     android:id="@+id/add_time"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    style="@style/Text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
                     android:gravity="top|end"
+                    android:paddingBottom="20dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="@dimen/padding_extra_narrow"
                     android:text="Set ETA"
-                    android:textColor="@color/primary_blue"
-                    style="@style/Text.Medium"/>
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/primary_blue" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_client_name_last"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Text.Medium"
-                android:textColor="@color/text_secondary"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -86,20 +97,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:paddingRight="@dimen/padding_extra_narrow"
                     android:id="@+id/tv_client_gender"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"
-                    android:textColor="@color/text_secondary"/>
+                    android:paddingRight="@dimen/padding_extra_narrow"
+                    android:textColor="@color/text_secondary" />
 
                 <TextView
-                    android:paddingLeft="@dimen/padding_extra_narrow"
                     android:id="@+id/tv_dob"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"
-                    android:textColor="@color/text_secondary"/>
+                    android:paddingLeft="@dimen/padding_extra_narrow"
+                    android:textColor="@color/text_secondary" />
             </LinearLayout>
 
             <LinearLayout
@@ -110,26 +121,26 @@
                 android:paddingTop="@dimen/padding_narrow">
 
                 <TextView
-                    android:paddingBottom="@dimen/padding_narrow"
-                    android:paddingTop="@dimen/padding_narrow"
-                    android:paddingRight="@dimen/padding_medium"
-                    android:paddingLeft="@dimen/padding_medium"
                     android:id="@+id/tv_priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:background="@color/green_light"
+                    android:paddingBottom="@dimen/padding_narrow"
+                    android:paddingLeft="@dimen/padding_medium"
+                    android:paddingRight="@dimen/padding_medium"
+                    android:paddingTop="@dimen/padding_narrow"
                     android:text="R"
                     android:textColor="@color/white"
-                    android:background="@color/green_light"/>
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:paddingLeft="@dimen/padding_extra_narrow"
-                    android:layout_gravity="center"
                     android:id="@+id/tv_job_action"
+                    style="@style/Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text"
-                    android:textColor="@color/text_secondary"/>
+                    android:layout_gravity="center"
+                    android:paddingLeft="@dimen/padding_extra_narrow"
+                    android:textColor="@color/text_secondary" />
             </LinearLayout>
         </LinearLayout>
 
