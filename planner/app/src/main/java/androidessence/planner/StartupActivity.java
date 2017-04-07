@@ -110,7 +110,7 @@ public class StartupActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.bt_start_shift:
                 try {
-                    service = DataService.getService();
+                    service = DataService.getService(this);
                     service.parseJsonData();
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Parsing failed", Toast.LENGTH_SHORT).show();

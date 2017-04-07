@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         movieRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         movieRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        DataService service = DataService.getService();
+        DataService service = DataService.getService(this);
         shiftList = service.getShiftItems();
         // Setup Adapter
         itemAdapter = new ItemAdapter(this, shiftList, this, this);
@@ -380,8 +380,6 @@ public class MainActivity extends AppCompatActivity implements StartActivityForR
         {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
-
-
 
                 v.getLayoutParams().height = interpolatedTime == 1
                         ? RecyclerView.LayoutParams.WRAP_CONTENT

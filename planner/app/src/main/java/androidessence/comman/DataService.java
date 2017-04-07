@@ -1,53 +1,58 @@
 package androidessence.comman;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
+import androidessence.planner.MainActivity;
 import androidessence.pojo.IncompleteItems;
 import androidessence.pojo.ShiftItems;
 
-/**
- * Created by himanshu.sharma on 24-01-2017.
- */
 
-public class DataService
-{
-    private  ArrayList<IncompleteItems> listIncompleteItems = null;
+public class DataService {
+    private ArrayList<IncompleteItems> listIncompleteItems = null;
 
     private ArrayList<ShiftItems> shiftItems = null;
 
+
     private static DataService object;
 
-    public final static long MILLIS_PER_DAY = 24 * 60 * 60 * 1000L;
+    private Context context;
 
-    private DataService(){
+    private final static long MILLIS_PER_DAY = 48 * 60 * 60 * 1000L;
+
+    private final static long MILLIS_PER_DAY1 = 60 * 60 * 1000L;
+
+    private DataService(Context context) {
+        this.context = context;
     }
 
-    public static DataService getService()
-    {
-        if(object == null) {
+    public static DataService getService(Context context) {
+        if (object == null) {
             synchronized (DataService.class) {
                 if (object == null) {
-                    object = new DataService();
+                    object = new DataService(context);
                 }
             }
         }
         return object;
     }
 
-    public void parseJsonData() throws Exception
-    {
+    public void parseJsonData() throws Exception {
         listIncompleteItems = new ArrayList<>();
         shiftItems = new ArrayList<>();
 
         JsonData data = new JsonData();
         JSONObject jsonObject = new JSONObject(data.getJsonData());
-        JSONArray incompArray  = jsonObject.getJSONArray(Constants.INCOMPLETE_JOBS);
+        JSONArray incompArray = jsonObject.getJSONArray(Constants.INCOMPLETE_JOBS);
         JSONArray shiftArray = jsonObject.getJSONArray(Constants.SHIFT_JOBS);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yy");
@@ -55,24 +60,37 @@ public class DataService
         Calendar todayDate = Calendar.getInstance();
         todayDate.setTime(new Date());
 
-        for (int i = 0; i< incompArray.length() ; i++)
-        {
+        for (int i = 0; i < incompArray.length(); i++) {
             JSONObject jsonItem = incompArray.getJSONObject(i);
-            String time = jsonItem.getString(Constants.TIME);
-            String hr = jsonItem.getString(Constants.HOUR);
-            String min = jsonItem.getString(Constants.MIN);
+            String time4 = jsonItem.getString(Constants.TIME);
+
+            DateFormat DATE_TIME = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
+            MainApp app = (MainApp) context.getApplicationContext();
+            String time = app.getCurrentTime();
 
             Calendar actualDate = Calendar.getInstance();
             actualDate.setTime(new Date());
-            actualDate.add(Calendar.DATE, -1);
+            actualDate.add(Calendar.DATE, -2);
 
-            int hour = Integer.parseInt(time.substring(0,2));
-            actualDate.set(Calendar.HOUR, hour);
+            Calendar newDate = Calendar.getInstance();
+            newDate.setTime(new Date());
 
-            int minute = Integer.parseInt(time.substring(3,5));
-            actualDate.set(Calendar.MINUTE, minute);
-            String date1 = sdf.format(actualDate.getTime());
+            int minute = Integer.parseInt(time.substring(3, 5));
 
+            if (i == 0) {
+                minute = Integer.parseInt(time.substring(3, 5)) - 1560;
+            } else if (i == 1) {
+                minute = Integer.parseInt(time.substring(3, 5)) - 240;
+            } else if (i == 2) {
+                minute = Integer.parseInt(time.substring(3, 5)) - 30;
+            }
+            newDate.set(Calendar.MINUTE, minute);
+            String finalTime = DATE_TIME.format(newDate.getTime());
+            String finalDate = sdf.format(newDate.getTime());
+
+            String hr = jsonItem.getString(Constants.HOUR);
+            String min = jsonItem.getString(Constants.MIN);
             String name = jsonItem.getString(Constants.NAME);
             String gender = jsonItem.getString(Constants.GENDER);
             String dob = jsonItem.getString(Constants.DOB);
@@ -80,7 +98,7 @@ public class DataService
             String action = jsonItem.getString(Constants.ACTION);
             String status = jsonItem.getString(Constants.STATUS);
             String eta = jsonItem.getString(Constants.ETA);
-            IncompleteItems item = new IncompleteItems(time, hr, min, name, gender, age , action, dob, status, date1, eta);
+            IncompleteItems item = new IncompleteItems(finalTime, hr, min, name, gender, age, action, dob, status, finalDate, eta);
 
             boolean moreThanDay = Math.abs(actualDate.getTime().getTime() - todayDate.getTime().getTime()) > MILLIS_PER_DAY;
 
@@ -89,11 +107,39 @@ public class DataService
             }
         }
 
-
-
-        for (int i = 0; i< shiftArray.length() ; i++) {
+        for (int i = 0; i < shiftArray.length(); i++) {
             JSONObject jsonObjectShift = shiftArray.getJSONObject(i);
-            String time = jsonObjectShift.getString(Constants.TIME);
+            String time1 = jsonObjectShift.getString(Constants.TIME);
+
+            DateFormat DATE_TIME = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
+            MainApp app = (MainApp) context.getApplicationContext();
+            String time = app.getCurrentTime();
+
+            Calendar actualDate = Calendar.getInstance();
+            actualDate.setTime(new Date());
+
+            Calendar newDate = Calendar.getInstance();
+            newDate.setTime(new Date());
+
+            int minute = Integer.parseInt(time.substring(3, 5));
+
+            if (i == 0) {
+                minute = Integer.parseInt(time.substring(3, 5)) + 30;
+            } else if (i == 1) {
+                minute = Integer.parseInt(time.substring(3, 5)) + 150;
+            } else if (i == 2) {
+                minute = Integer.parseInt(time.substring(3, 5)) + 300;
+            } else if (i == 3) {
+                minute = Integer.parseInt(time.substring(3, 5)) + 420;
+            } else if (i == 4) {
+                minute = Integer.parseInt(time.substring(3, 5)) + 60;
+            }
+
+            actualDate.set(Calendar.MINUTE, minute);
+            String finalTime = DATE_TIME.format(actualDate.getTime());
+
+            // String time = app.getCurrentTime();
             String hr = jsonObjectShift.getString(Constants.HOUR);
             String min = jsonObjectShift.getString(Constants.MIN);
             String name = jsonObjectShift.getString(Constants.NAME);
@@ -104,8 +150,12 @@ public class DataService
             String status = jsonObjectShift.getString(Constants.STATUS);
             String eta = jsonObjectShift.getString(Constants.ETA);
 
-            ShiftItems item = new ShiftItems(time, hr, min, name, gender, age , action, dob, status, eta);
-            shiftItems.add(item);
+            ShiftItems item = new ShiftItems(finalTime, hr, min, name, gender, age, action, dob, status, eta);
+
+            boolean moreThanDay = Math.abs(actualDate.getTime().getTime() - newDate.getTime().getTime()) > MILLIS_PER_DAY1 * app.getCurrentHour();
+            if (!moreThanDay) {
+                shiftItems.add(item);
+            }
         }
     }
 
@@ -113,8 +163,7 @@ public class DataService
         return shiftItems;
     }
 
-    public ArrayList<IncompleteItems> getListIncompleteItems(){
+    public ArrayList<IncompleteItems> getListIncompleteItems() {
         return listIncompleteItems;
     }
-
 }
