@@ -52,6 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 patientInfoList.add(viewHolder.clientName.getText().toString());
                 patientInfoList.add(viewHolder.lastName.getText().toString());
                 patientInfoList.add(viewHolder.dob.getText().toString());
+                patientInfoList.add(viewHolder.time.getText().toString());
                 plannerItemClickListener.onItemClicked(view, patientInfoList);
             }
         });

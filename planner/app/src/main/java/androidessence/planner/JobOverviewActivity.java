@@ -43,6 +43,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
     ImageView mapImageView;
     ImageView navigationImageView;
     TextView tvPhoneNumber;
+    TextView tvTime;
     int windowwidth;
     int windowheight;
     private int previousFingerPosition = 0;
@@ -64,6 +65,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
         container = (ViewGroup) findViewById(R.id.container);
         frame = (LinearLayout) findViewById(R.id.container);
         outerframe = (RelativeLayout) findViewById(R.id.frame);
+        tvTime = (TextView)findViewById(R.id.tv_time);
         frame.setOnTouchListener(this);
 
         /*frame.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,7 @@ public class JobOverviewActivity extends AppCompatActivity implements View.OnCli
             tvFirstName.setText(patientInfoList.get(0));
             tvLastName.setText(patientInfoList.get(1));
             tvDob.setText(patientInfoList.get(2));
+            tvTime.setText(patientInfoList.get(3));
         }
 
         callImageView = (ImageView) findViewById(R.id.img_call);
